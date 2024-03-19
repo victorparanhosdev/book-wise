@@ -7,12 +7,20 @@ export const globalStyle = globalCss({
     margin: 0,
     boxSizing: "border-box",
   },
+  ':root': {
+    fontSize: '62.5%'
+  },
 
   body: {
     '-webkit-font-smoothing': 'antialiased',
-    fontFamily: '$default'
-    
+    fontFamily: '$default',
+    background: '$gray800', 
+
   },
+  
+  'body, input, button, textarea': {
+    fontSize: '$md'
+  }
 
 
 });
