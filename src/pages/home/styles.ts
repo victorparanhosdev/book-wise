@@ -34,6 +34,10 @@ export const SideBarContainer = styled('div', {
   marginBlock: '$20',
   position: 'relative',
   zIndex: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
 
  '> img': {
     height: '100%',
@@ -43,5 +47,54 @@ export const SideBarContainer = styled('div', {
     overflow: 'hidden',
     zIndex: -1,
     borderRadius: '$md',
+  },
+
+
+})
+
+export const Menu = styled('div', {
+  margin: '$40 auto 0',
+
+  h1: {
+    background: '$gradient-horizontal',
+    '-webkit-background-clip': 'text', /* Define a área de clipping */
+    '-webkit-text-fill-color': 'transparent', /* Define a cor do texto como transparente */
+    display: 'flex',
+    alignItems: 'center',
+    gap: '$8',
+    fontSize: '$heading_md',
+    fontWeight: '$bold',
+    lineHeight: '$base',
+    marginBottom: '6.4rem',
+
+    
+  },
+  ul: {
+    listStyle: 'none',
+    display: 'grid',
+    gap: '$16',
+
+    li: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '$12',
+      cursor: 'pointer',
+      fontSize: '$text_md',
+      lineHeight: '$base',
+      color: '$gray400',
+
+      '&:hover': {
+        fontWeight: '$bold',
+        color: '$gray100',
+      }
+    }
   }
+
+
+})
+
+export const Button = styled('button', {
+  all: 'unset',
+  cursor: 'pointer',
+  margin: 'auto auto 2.4rem',
 })

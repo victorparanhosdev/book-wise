@@ -1,5 +1,5 @@
-import { ChartLineUp } from "phosphor-react";
-import { HomeContainer, SideBarContainer, PageTitle } from "./styles";
+import { ChartLineUp, Binoculars, User } from "phosphor-react";
+import { HomeContainer, SideBarContainer, PageTitle, Menu, Button } from "./styles";
 import Image from "next/image";
 import BackGround from '../../assets/Background.png'
 import BookHeart from '../../assets/mdi_book-heart-outline.svg'
@@ -9,10 +9,22 @@ export default function Home() {
       <HomeContainer>
           <SideBarContainer>
             <Image height={988} width={232} alt="" src={BackGround}/>
+          <Menu>
             <h1>
             <Image width={24} height={24} alt="" src={BookHeart}/>
             BookWise
             </h1>
+
+            <ul>
+              <li><ChartLineUp size={24}/>Inicio</li>
+              <li><Binoculars size={24}/>Explorer</li>
+              <li><User size={24}/>Perfil</li>
+            </ul>
+        
+
+
+            </Menu>
+            <Button>Login</Button>
             
           </SideBarContainer>
           <div>

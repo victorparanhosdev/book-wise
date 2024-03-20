@@ -28,9 +28,9 @@ export const { styled, getCssText, config, createTheme, css, globalCss, keyframe
       text_md: '1.6rem',
       text_sm: '1.4rem',
      
-      butto_sm: '1.4rem',
-      butto_md: '1.6rem',
-      butto_lg: '1.8rem',
+      button_sm: '1.4rem',
+      button_md: '1.6rem',
+      button_lg: '1.8rem',
 
     },
 
