@@ -3,41 +3,45 @@ import { createStitches } from '@stitches/react';
 export const { styled, getCssText, config, createTheme, css, globalCss, keyframes, prefix, reset, theme } = createStitches({
   theme: {
     fonts: {
-      default: 'Nunito, sans-serif',
+      default: 'Nunito Sans, sans-serif',
     },
 
     space: {
-      1: '0.4rem',
-      2: '0.8rem',
-      3: '1.2rem',
-      4: '1.6rem',
-      5: '2rem',
-      6: '2.4rem',
-      7: '2.8rem',
-      8: '3.2rem',
-      10: '4rem',
+      4: '0.4rem',
+      8: '0.8rem',
+      12: '1.2rem',
+      16: '1.6rem',
+      20: '2rem',
+      24: '2.4rem',
+      28: '2.8rem',
+      32: '3.2rem',
+      40: '4rem',
     },
 
     fontSizes: {
-      xs: '1.2rem',
-      sm: '1.4rem',
-      md: '1.6rem',
-      lg: '1.8rem',
-      xl: '2rem',
-      '2xl': '2.4rem',
+      heading_lg: '2.4rem',
+      heading_md: '2rem',
+      heading_sm: '1.8rem',
+      heading_xs: '1.6rem',
+
+      text_lg: '2rem',
+      text_md: '1.6rem',
+      text_sm: '1.4rem',
+     
+      butto_sm: '1.4rem',
+      butto_md: '1.6rem',
+      butto_lg: '1.8rem',
+
     },
 
     fontWeights: {
       regular: '400',
-      medium: '500',
       bold: '700',
     },
 
     lineHeights: {
-      shorter: '125%',
       short: '140%',
       base: '160%',
-      tall: '180%',
     },
 
     colors: {

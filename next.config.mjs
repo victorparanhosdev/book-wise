@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'api.ts', 'api.tsx'],
+  images: {
+    unoptimized: true,
+  },
 
 };
 
