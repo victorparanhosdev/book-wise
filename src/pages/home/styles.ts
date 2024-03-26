@@ -1,5 +1,5 @@
 import { styled } from "@/styles/stitches.config";
-
+import Background from '@/src/assets/Background.png'
 
 export const HomeContainer = styled('div', {
   display: 'grid',
@@ -27,7 +27,7 @@ export const PageTitle = styled('h1', {
 
 })
 
-
+console.log(Background)
 
 export const SideBarContainer = styled('div', {
 
@@ -37,18 +37,10 @@ export const SideBarContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-
-
- '> img': {
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    overflow: 'hidden',
-    zIndex: -1,
-    borderRadius: '$md',
-  },
-
+  backgroundImage: `url(${Background.src})`, // Substitua pelo caminho correto da sua imagem
+  backgroundSize: 'cover', // Ajusta o tamanho da imagem para cobrir todo o elemento
+  backgroundRepeat: 'no-repeat', // Evita que a imagem se repita
+  borderRadius: '$md'
 
 })
 
@@ -82,12 +74,16 @@ export const Menu = styled('div', {
       fontSize: '$text_md',
       lineHeight: '$base',
       color: '$gray400',
+ 
 
       '&:hover': {
         fontWeight: '$bold',
         color: '$gray100',
+        transition: 'all 0.2s',
       }
-    }
+    },
+
+
   }
 
 
@@ -97,4 +93,21 @@ export const Button = styled('button', {
   all: 'unset',
   cursor: 'pointer',
   margin: 'auto auto 2.4rem',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '$12',
+  color: '$gray200',
+  fontSize: '$button_md',
+  fontWeight: '$bold',
+  lineHeight: '$base',
+
+  '&:hover': {
+    color: '$green100',
+
+  },
+
+  svg: {
+    color: "$green100",
+
+  }
 })

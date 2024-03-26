@@ -1,4 +1,4 @@
-import { ChartLineUp, Binoculars, User } from "phosphor-react";
+import { ChartLineUp, Binoculars, User, SignIn } from "phosphor-react";
 import { HomeContainer, SideBarContainer, PageTitle, Menu, Button } from "./styles";
 import Image from "next/image";
 import BackGround from '../../assets/Background.png'
@@ -8,7 +8,7 @@ export default function Home() {
     return (
       <HomeContainer>
           <SideBarContainer>
-            <Image height={988} width={232} alt="" src={BackGround}/>
+            
           <Menu>
             <h1>
             <Image width={24} height={24} alt="" src={BookHeart}/>
@@ -24,7 +24,7 @@ export default function Home() {
 
 
             </Menu>
-            <Button>Login</Button>
+            <Button>Fazer login <SignIn size={20}/></Button>
             
           </SideBarContainer>
           <div>
