@@ -1,7 +1,7 @@
 import { ChartLineUp, Binoculars, User, SignIn } from "phosphor-react";
 import { HomeContainer, SideBarContainer, PageTitle, Menu, Button } from "./styles";
 import Image from "next/image";
-import BackGround from '../../assets/Background.png'
+
 import BookHeart from '../../assets/mdi_book-heart-outline.svg'
 
 export default function Home() {
@@ -16,9 +16,9 @@ export default function Home() {
             </h1>
 
             <ul>
-              <li><ChartLineUp size={24}/>Inicio</li>
-              <li><Binoculars size={24}/>Explorer</li>
-              <li><User size={24}/>Perfil</li>
+              <li><button><ChartLineUp size={24}/>Inicio</button></li>
+              <li><button><Binoculars size={24}/>Explorer</button></li>
+              <li><button><User size={24}/>Perfil</button></li>
             </ul>
         
 

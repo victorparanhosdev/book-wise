@@ -69,6 +69,30 @@ export const Menu = styled('div', {
     li: {
       display: 'flex',
       alignItems: 'center',
+
+      '&::before': {
+        display:'block',
+        content: '',
+        width: '0.4rem',
+        height: '2.4rem',
+        background: '$gradient-vertical',
+        borderRadius: '$full',
+        marginRight: "1.6rem",
+        visibility: 'hidden',
+  
+      },
+
+     '&:hover::before': {
+        visibility: 'visible'
+      }
+    
+
+    },
+ 
+    button: {
+      all: 'unset',
+      display: 'flex',
+      alignItems: 'center',
       gap: '$12',
       cursor: 'pointer',
       fontSize: '$text_md',
@@ -81,7 +105,7 @@ export const Menu = styled('div', {
         color: '$gray100',
         transition: 'all 0.2s',
       }
-    },
+    }
 
 
   }
