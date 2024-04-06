@@ -1,10 +1,15 @@
 import { ChartLineUp, Binoculars, User, SignIn } from "phosphor-react";
-import { HomeContainer, SideBarContainer, PageTitle, Menu, Button } from "./styles";
+import { HomeContainer, SideBarContainer, PageTitle, Menu, Button, NavLinkButton } from "./styles";
 import Image from "next/image";
 
 import BookHeart from '../../assets/mdi_book-heart-outline.svg'
+import {useRouter} from "next/router";
 
 export default function Home() {
+
+  const router = useRouter()
+
+  
     return (
       <HomeContainer>
           <SideBarContainer>
@@ -16,9 +21,9 @@ export default function Home() {
             </h1>
 
             <ul>
-              <li><button><ChartLineUp size={24}/>Inicio</button></li>
-              <li><button><Binoculars size={24}/>Explorer</button></li>
-              <li><button><User size={24}/>Perfil</button></li>
+              <li><NavLinkButton href='/' active={router.asPath === '/'}><ChartLineUp size={24}/>Inicio</NavLinkButton></li>
+              <li><NavLinkButton href='/explorer' active={router.asPath === '/explorer'}><Binoculars size={24}/>Explorer</NavLinkButton></li>
+              <li><NavLinkButton href='/perfil' active={router.asPath === '/perfil'}><User size={24}/>Perfil</NavLinkButton></li>
             </ul>
         
 
@@ -27,6 +32,7 @@ export default function Home() {
             <Button>Fazer login <SignIn size={20}/></Button>
             
           </SideBarContainer>
+          
           <div>
             <PageTitle><ChartLineUp size={32}/>Inicio</PageTitle>
 

@@ -1,5 +1,6 @@
 import { styled } from "@/styles/stitches.config";
 import Background from '@/src/assets/Background.png'
+import Link from "next/link";
 
 export const HomeContainer = styled('div', {
   display: 'grid',
@@ -27,7 +28,6 @@ export const PageTitle = styled('h1', {
 
 })
 
-console.log(Background)
 
 export const SideBarContainer = styled('div', {
 
@@ -61,54 +61,14 @@ export const Menu = styled('div', {
 
     
   },
+
   ul: {
     listStyle: 'none',
     display: 'grid',
     gap: '$16',
-
-    li: {
-      display: 'flex',
-      alignItems: 'center',
-
-      '&::before': {
-        display:'block',
-        content: '',
-        width: '0.4rem',
-        height: '2.4rem',
-        background: '$gradient-vertical',
-        borderRadius: '$full',
-        marginRight: "1.6rem",
-        visibility: 'hidden',
-  
-      },
-
-     '&:hover::before': {
-        visibility: 'visible'
-      }
-    
-
-    },
- 
-    button: {
-      all: 'unset',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '$12',
-      cursor: 'pointer',
-      fontSize: '$text_md',
-      lineHeight: '$base',
-      color: '$gray400',
+  },
  
 
-      '&:hover': {
-        fontWeight: '$bold',
-        color: '$gray100',
-        transition: 'all 0.2s',
-      }
-    }
-
-
-  }
 
 
 })
@@ -134,4 +94,49 @@ export const Button = styled('button', {
     color: "$green100",
 
   }
+})
+
+export const NavLinkButton = styled(Link, {
+
+    all: 'unset',
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    fontSize: '$text_md',
+    lineHeight: '$base',
+    color: '$gray400',
+
+    svg: {
+      marginRight: "1.2rem", 
+    },
+
+    '&:hover': {
+      fontWeight: '$bold',
+      color: '$gray100',
+      transition: 'all 0.2s',
+    },
+
+    '&::before': {
+      display:'block',
+      content: '',
+      width: '0.4rem',
+      height: '2.4rem',
+      background: '$gradient-vertical',
+      borderRadius: '$full',
+      marginRight: "1.6rem", 
+      visibility: 'hidden'
+    },
+
+    variants: {
+        active: {
+          true: {
+            color: "$gray100",
+            fontWeight: "$bold",
+            "&::before": {
+              visibility: 'visible'
+            }
+          }
+        }
+    }
+
 })
