@@ -4,8 +4,11 @@ import googleLogo from "@/src/assets/logos_google-icon.png";
 import gitLogo from "@/src/assets/Clip path group.png";
 import rocketLogo from "@/src/assets/RocketLaunch.png";
 import BookHeart from "@/src/assets/mdi_book-heart-outline.svg";
+import {NextPageWithLayout} from '@/src/pages/_app.page'
+import { NextSeo } from "next-seo";
 
-export default function SignIn() {
+
+const SignIn: NextPageWithLayout = () => {
   return (
     <Container>
       <SectionLogo>
@@ -39,3 +42,13 @@ export default function SignIn() {
     </Container>
   );
 }
+
+SignIn.getLayout = (page) => {
+  
+  return <>
+  <NextSeo title={`Login | BookWise`}/>
+    {page}
+  </>
+}
+
+export default SignIn
