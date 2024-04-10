@@ -1,13 +1,22 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-export const authOptions = {
-  // Configure one or more authentication providers
-  providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
-    }),
-    // ...add more providers here
-  ],
+import { prismaAdapter } from "@/src/lib/auth/prismaAdapter";
+import { NextApiRequest, NextApiResponse } from "next";
+import NextAuth, { NextAuthOptions } from "next-auth"
+import GoogleProvider from "next-auth/providers/google";
+
+export function buildNextAuthOptions(req: NextApiRequest, res: NextApiResponse): NextAuthOptions {
+  return {
+    adapter: prismaAdapter(req, res),
+    providers: [  
+      GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+    })
+]
+  }
 }
-export default NextAuth(authOptions)
+
+
+
+export default async function auth(req: NextApiRequest, res: NextApiResponse){
+  return NextAuth(req, res, buildNextAuthOptions(req, res))
+}   
