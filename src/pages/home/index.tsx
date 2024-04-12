@@ -3,8 +3,11 @@ import { PageTitle } from "../../components/PageTitle";
 import Image from "next/image";
 import { DefaultLayout } from "@/src/components/defaultLayout";
 import { NextPageWithLayout } from "../_app.page";
+import { useSession } from "next-auth/react";
 
 const Home: NextPageWithLayout = () => {
+
+  const {data} = useSession()
   return (
     <div>
       <PageTitle title="Inicio" icon={<ChartLineUp size={32} />}/>
@@ -22,6 +25,7 @@ const Home: NextPageWithLayout = () => {
                 />
                 <p>Victor Paranhos</p>
                 <span>Hoje</span>
+                <pre>{JSON.stringify(data, null, 2)}</pre>
               </div>
 
               <div>

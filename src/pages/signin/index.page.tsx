@@ -6,9 +6,30 @@ import rocketLogo from "@/src/assets/RocketLaunch.png";
 import BookHeart from "@/src/assets/mdi_book-heart-outline.svg";
 import {NextPageWithLayout} from '@/src/pages/_app.page'
 import { NextSeo } from "next-seo";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+
+interface AuthButtonsProps {
+  callbackUrl?: string
+}
+const SignIn: NextPageWithLayout = ({callbackUrl = "/"}: AuthButtonsProps) => {
+
+  const router = useRouter()
+
+  const handleSignin = (provider?: string) => {
+
+    if(!provider){
+      router.push(callbackUrl)
+      return
+
+    }
+
+    signIn(provider, {
+      callbackUrl
+    })
+  }
 
 
-const SignIn: NextPageWithLayout = () => {
   return (
     <Container>
       <SectionLogo>
@@ -24,15 +45,15 @@ const SignIn: NextPageWithLayout = () => {
           <p>Faça seu login ou acesse como visitante</p>
 
           <Login>
-            <Button>
+            <Button onClick={()=> handleSignin("google")}>
               <Image src={googleLogo} height={32} width={32} alt="Google" />
               Entrar com Google
             </Button>
-            <Button>
+            <Button onClick={()=> handleSignin("github")}>
               <Image src={gitLogo} height={32} width={32} alt="Github" />
               Entrar com GitHub
             </Button>
-            <Button>
+            <Button onClick={()=> handleSignin()}>
               <Image src={rocketLogo} height={32} width={32} alt="Visitante" />
               Acessar como visitante
             </Button>

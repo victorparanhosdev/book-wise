@@ -11,6 +11,7 @@ model User {
   id         String   @id @default(uuid())
   name       String
   avatar_url String?
+  email      String   @unique
   created_at DateTime @default(now())
 
   accounts Account[]
