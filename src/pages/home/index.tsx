@@ -4,10 +4,16 @@ import Image from "next/image";
 import { DefaultLayout } from "@/src/components/defaultLayout";
 import { NextPageWithLayout } from "../_app.page";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+
+
+
 
 const Home: NextPageWithLayout = () => {
 
   const {data} = useSession()
+ 
+
   return (
     <div>
       <PageTitle title="Inicio" icon={<ChartLineUp size={32} />}/>
@@ -59,10 +65,11 @@ const Home: NextPageWithLayout = () => {
         <div></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 Home.getLayout = (page) => {
+  
   return <DefaultLayout title="Início">{page}</DefaultLayout>;
 };
 

@@ -58,6 +58,23 @@ export const Button = styled("button", {
   svg: {
     color: "$green100",
   },
+
+  variants: {
+      active: {
+        authenticated: {
+          color: '$gray200',
+          fontSize: '$text_md',
+          fontWeight: '$regular',
+          "&:hover": {
+            color: "unset",
+          },
+
+          svg: {
+            color: 'red'
+          }
+        }
+      }
+  }
 });
 
 export const NavLinkButton = styled(Link, {
