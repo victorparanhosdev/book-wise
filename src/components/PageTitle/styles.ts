@@ -4,7 +4,7 @@ export const Container = styled("div", {
   display: "flex",
   alignItems: "center",
   gap: "$12",
-
+  marginBottom: '4rem',
   svg: {
     color: "$green100",
   },
@@ -12,5 +12,6 @@ export const Container = styled("div", {
   h1: {
     color: "$gray100",
     fontSize: "$heading_lg",
+   
   },
 });
