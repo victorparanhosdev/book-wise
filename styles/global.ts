@@ -20,7 +20,21 @@ export const globalStyle = globalCss({
   
   'body, input, button, textarea': {
     fontSize: '$text_md'
+  },
+
+  '::-webkit-scrollbar': {
+    width: '0.5rem',
+    height: '0.4rem',
+    background: 'transparent',
+    borderRadius: '$full'
+  },
+
+  '::-webkit-scrollbar-thumb': {
+    background: '$gradient-vertical',
+    borderRadius: '$full'
   }
+
+
 
 
 });

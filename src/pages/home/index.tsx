@@ -21,6 +21,10 @@ const Home: NextPageWithLayout = () => {
         <Content>
           <CardBox />
           <CardBox />
+          <CardBox />
+          <CardBox />
+          <CardBox />
+          <CardBox />
         </Content>
 
         <div></div>
