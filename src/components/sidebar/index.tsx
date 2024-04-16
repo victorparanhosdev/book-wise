@@ -29,6 +29,9 @@ export function SideBar(){
           <Button onClick={()=> {
             router.push('/signin')
           }}> Fazer login <SignIn size={20}/></Button> 
+          <Button onClick={()=> {
+            signOut()
+          }}> Deslogar<SignIn size={20}/></Button> 
  
           
         </SideBarContainer>

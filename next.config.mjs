@@ -4,6 +4,8 @@ const nextConfig = {
   pageExtensions: ['page.tsx', 'api.ts', 'api.tsx'],
   images: {
     unoptimized: true,
+    domains: ["s3-alpha-sig.figma.com", "lh3.googleusercontent.com", "avatars.githubusercontent.com", "images.unsplash.com"]
+    
   },
 
 };
