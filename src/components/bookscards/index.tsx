@@ -2,23 +2,30 @@ import Image from "next/image";
 
 import { useSession } from "next-auth/react";
 import { CardContainer, BoxOne } from "./styles"
+import emptyuser from '../../assets/emptyuser.jpg'
 
 export function CardBox(){
     
   const {data} = useSession()
 
+  const userAvatar = data?.user.avatar_url ?? emptyuser
+  const userName = data?.user.name ?? 'Anonymus'
+
+
+ 
   
     return(
         <CardContainer>         
         <BoxOne>
           <div>
             <Image
+              property="true"
               height={40}
               width={40}
-              src={data?.user.avatar_url!}
-              alt={`perfil de ${data?.user.name}`}
+              src={userAvatar}
+              alt={`perfil de ${userName}`}
             />
-            <p>{data?.user.name}</p>
+            <p>{userName}</p>
             <span>Hoje</span>
           </div>
 
