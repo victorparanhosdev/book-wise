@@ -34,8 +34,10 @@ const Home: NextPageWithLayout = () => {
 }
 
 Home.getLayout = (page) => {
-  
-  return <DefaultLayout title="Início">{page}</DefaultLayout>;
+
+  return (
+    <DefaultLayout title="Início">{page}</DefaultLayout>
+  )
 };
 
 export default Home;

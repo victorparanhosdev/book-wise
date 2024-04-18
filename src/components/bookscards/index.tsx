@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { CardContainer, BoxOne } from "./styles"
 import emptyuser from '../../assets/emptyuser.jpg'
+import { Avatar } from "../avatar";
 
 export function CardBox(){
     
@@ -18,13 +19,7 @@ export function CardBox(){
         <CardContainer>         
         <BoxOne>
           <div>
-            <Image
-              property="true"
-              height={40}
-              width={40}
-              src={userAvatar}
-              alt={`perfil de ${userName}`}
-            />
+            <Avatar src={userAvatar} alt={`perfil de ${userName}`} />
             <p>{userName}</p>
             <span>Hoje</span>
           </div>

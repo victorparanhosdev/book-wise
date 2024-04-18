@@ -8,9 +8,16 @@ export const DefaultLayoutContainer = styled('div', {
     paddingInline: '$20',
     gap: '9.6rem',
     background: '$gray800',
-    color: '$gray100'
+    color: '$gray100',
+ 
+    
 })
 
-export const Content = styled('div', {
+export const Content = styled('div', {        
     overflowY: 'auto',
+    '&::-webkit-scrollbar': {
+        display: 'none'    
+        },
+
+  
 })
