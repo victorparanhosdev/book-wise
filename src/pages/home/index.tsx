@@ -1,5 +1,5 @@
 import { ChartLineUp } from "phosphor-react";
-import { PageTitle } from "../../components/PageTitle";
+import { PageTitle } from "../../components/pagetittle";
 
 import { DefaultLayout } from "@/src/components/defaultLayout";
 import { NextPageWithLayout } from "../_app.page";

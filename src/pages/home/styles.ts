@@ -1,8 +1,6 @@
 import { styled } from "@/styles/stitches.config";
 
 export const Content = styled("div", {
-    height: 'calc(100vh - 18.4rem)',
-    overflowX: 'auto',
     display: 'grid',
     gap: '2rem'
 });

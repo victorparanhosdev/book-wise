@@ -1,5 +1,5 @@
 import { DefaultLayout } from "@/src/components/defaultLayout";
-import { PageTitle } from "../../components/PageTitle";
+import { PageTitle } from "../../components/pagetittle";
 import { Binoculars } from "phosphor-react";
 import { NextPageWithLayout } from "../_app.page";
 

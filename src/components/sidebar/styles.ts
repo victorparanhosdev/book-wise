@@ -39,7 +39,7 @@ export const Menu = styled("div", {
   },
 });
 
-export const Button = styled("button", {
+export const Button = styled(Link, {
   all: "unset",
   cursor: "pointer",
   margin: "auto auto 2.4rem",
@@ -50,6 +50,7 @@ export const Button = styled("button", {
   fontSize: "$button_md",
   fontWeight: "$bold",
   lineHeight: "$base",
+  
 
   "&:hover": {
     color: "$green100",

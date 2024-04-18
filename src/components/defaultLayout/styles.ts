@@ -12,5 +12,5 @@ export const DefaultLayoutContainer = styled('div', {
 })
 
 export const Content = styled('div', {
-    marginTop: '7.2rem',
+    overflowY: 'auto',
 })
