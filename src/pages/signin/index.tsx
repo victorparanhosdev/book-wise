@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 interface AuthButtonsProps {
   callbackUrl?: string
 }
-const SignIn: NextPageWithLayout = ({callbackUrl = "/"}: AuthButtonsProps) => {
+const SignIn: NextPageWithLayout = ({callbackUrl = "/home"}: AuthButtonsProps) => {
 
   const router = useRouter()
 
