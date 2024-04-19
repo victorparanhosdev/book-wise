@@ -7,26 +7,31 @@ import BookHeart from "@/src/assets/mdi_book-heart-outline.svg";
 import {NextPageWithLayout} from '@/src/pages/_app.page'
 import { NextSeo } from "next-seo";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface AuthButtonsProps {
   callbackUrl?: string
 }
-const SignIn: NextPageWithLayout = ({callbackUrl = "/home"}: AuthButtonsProps) => {
+const SignIn: NextPageWithLayout = ({callbackUrl = "/"}: AuthButtonsProps) => {
 
   const router = useRouter()
 
-  const handleSignin = (provider?: string) => {
+  const handleSignin = async(provider?: string) => {
 
     if(!provider){
-      router.push(callbackUrl)
+      router.replace(callbackUrl)
       return
 
     }
 
     signIn(provider, {
-      callbackUrl
+      callbackUrl,
+
     })
+
+
+
+
   }
 
 

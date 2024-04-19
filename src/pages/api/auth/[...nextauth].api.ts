@@ -31,7 +31,9 @@ export function buildNextAuthOptions(req: NextApiRequest, res: NextApiResponse):
               avatar_url: profile.picture
             }
           }
-        })
+        }),
+      
+        
       ],
       callbacks: {
         async session({session, user}){
@@ -42,7 +44,8 @@ export function buildNextAuthOptions(req: NextApiRequest, res: NextApiResponse):
         }
 
 
-  }
+      },
+    
 }
 
 }

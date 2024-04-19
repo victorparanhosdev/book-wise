@@ -11,7 +11,6 @@ import { CardBox } from "@/src/components/bookscards";
 
 const Home: NextPageWithLayout = () => {
 
- 
 
   return (
     <main>
