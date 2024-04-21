@@ -4,7 +4,8 @@ export const CardContainer = styled('div', {
 
     background: '$gray700',
     padding: '2.4rem',
-    borderRadius: '$sm'
+    borderRadius: '$sm',
+    marginBottom: '1.2rem'
 })
 
 export const BoxOne = styled('div', {
