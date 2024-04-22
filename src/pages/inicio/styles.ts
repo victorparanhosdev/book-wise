@@ -29,7 +29,7 @@ export const ContentRight= styled('aside', {
 
 })
 
-export const ButtonVerTodos = styled(Link, {
+export const ButtonVerTodos = styled('button', {
   all: 'unset',
   cursor: 'pointer',
   color: '$purple100',

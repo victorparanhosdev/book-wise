@@ -5,6 +5,7 @@ import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { DefaultSeo } from "next-seo";
 import { SessionProvider } from "next-auth/react"
+import * as Dialog from "@radix-ui/react-dialog";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
 
   return (
     <SessionProvider session={session}>
+      <Dialog.Root>
       <Head>
         <title>Book Wise</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -35,6 +37,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
         }}
       />
       <div>{getLayout(<Component {...pageProps} />)}</div>
+      </Dialog.Root>
       </SessionProvider>
   );
 }
