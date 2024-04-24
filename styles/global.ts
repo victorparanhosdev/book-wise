@@ -23,17 +23,25 @@ export const globalStyle = globalCss({
   },
 
   '::-webkit-scrollbar': {
-    width: '0.5rem',
+    width: '0.6rem',
     height: '0.4rem',
-    background: 'transparent',
+    background: '$gray700',
     borderRadius: '$full'
   },
 
   '::-webkit-scrollbar-thumb': {
-    background: '$gradient-vertical',
-    borderRadius: '$full'
-  }
+    background: '$gray600',
+    borderRadius: '$full',
+   
+  },
+  
+  ul: {
+    listStyle: 'none'
+  },
 
+  a: {
+    textDecoration: 'none'
+  }
 
 
 

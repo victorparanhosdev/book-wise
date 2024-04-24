@@ -5,6 +5,7 @@ export const BookContainer = styled("div", {
   borderRadius: "10px",
   maxWidth: "56.4rem",
   padding: "2.4rem 3.2rem",
+  
 });
 
 export const ContentOne = styled("div", {
