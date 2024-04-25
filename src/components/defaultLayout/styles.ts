@@ -13,7 +13,7 @@ export const DefaultLayoutContainer = styled('div', {
     
 })
 
-export const Content = styled('div', {        
+export const Content = styled('div', {       
     overflowY: 'auto',
     '&::-webkit-scrollbar': {
         display: 'none'    

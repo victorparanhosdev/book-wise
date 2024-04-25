@@ -4,12 +4,8 @@ import { PageTitle } from "../../components/pagetittle";
 import { DefaultLayout } from "@/src/components/defaultLayout";
 import { NextPageWithLayout } from "../_app.page";
 
-import {
-  Content,
-  TitleAvaliacao,
-  ContentRight,
-} from "./styles";
-import { CardBox } from "@/src/components/bookscards";
+import { Content, TitleAvaliacao, ContentRight, Section } from "./styles";
+import { RatingCard } from "@/src/components/RatingCard";
 import { CardLivros } from "@/src/components/cardlivros";
 
 import Link from "next/link";
@@ -21,18 +17,23 @@ const Home: NextPageWithLayout = () => {
       <Content>
         <div>
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
-          <CardBox />
-          <CardBox />
-          <CardBox />
-
+          <Section>
+            {Array.from({length: 20}).map((_, i) => {
+              return (
+                <RatingCard key={`componente-${i}`}/>
+              )
+            })}
+          </Section>
         </div>
 
         <ContentRight>
           <div>
             <TitleAvaliacao>Livros Populares</TitleAvaliacao>
 
-            <Link href="/explorer"> Ver todos <CaretRight size={16} /></Link>
-
+            <Link href="/explorer">
+              {" "}
+              Ver todos <CaretRight size={16} />
+            </Link>
           </div>
 
           <div>
@@ -43,8 +44,6 @@ const Home: NextPageWithLayout = () => {
           </div>
         </ContentRight>
       </Content>
-
-  
     </main>
   );
 };

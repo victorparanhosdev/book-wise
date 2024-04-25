@@ -2,8 +2,7 @@ import { styled} from "@/styles/stitches.config";
 
 
 export const Content = styled("div", {
-  display: "grid",
-  gridAutoFlow: "column",
+  display: 'flex',
   gap: "6.4rem",
 });
 
@@ -44,5 +43,15 @@ export const ContentRight = styled("aside", {
       },
     },
   },
+
+  "> div:nth-child(2)": {
+    minWidth: '32.4rem'
+  }
 });
+
+export const Section = styled('section', {
+  display: 'grid',
+  gap:'$12',
+})
+
 

@@ -9,7 +9,7 @@ import { DialogContent,
   ItemList,
   List} from './styles'
 import { BookDetails } from "@/src/components/bookdetails";
-import { Avatar } from "@/src/components/avatar";
+import { Avatar } from "@/src/components/Avatar";
 
 import Image from "next/image";
 import { X } from "phosphor-react";
