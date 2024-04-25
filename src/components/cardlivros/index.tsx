@@ -1,40 +1,45 @@
 
 import { CardContainer } from "./styles";
 import * as Dialog from '@radix-ui/react-dialog'
-import { DialogContent,
+import {
+  DialogContent,
   DialogOverlay,
   DialogClose,
   Comments,
   TitleComents,
   ItemList,
-  List} from './styles'
+  List
+} from './styles'
 import { BookDetails } from "@/src/components/bookdetails";
 import { Avatar } from "@/src/components/Avatar";
 
 import Image from "next/image";
 import { X } from "phosphor-react";
+import { RatingStart } from "../RatingStart";
 
 export const CardLivros = () => {
-  return (<>
-  <Dialog.Trigger asChild>
-  <CardContainer>
-      <Image
-        height={80}
-        width={80}
-        src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt=""
-      />
-      <div>
-        <h2>A Revolução dos bichos</h2>
-        <p>George Orwell</p>
+  return (
 
-        <div>********</div>
-      </div>
-  </CardContainer>
-  </Dialog.Trigger>
+    <>
+      <Dialog.Trigger asChild>
+        <CardContainer>
+          <Image
+            height={80}
+            width={80}
+            src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt=""
+          />
+          <div>
+            <h2>A Revolução dos bichos</h2>
+            <p>George Orwell</p>
 
-  
-    <Dialog.Portal>
+            <RatingStart />
+          </div>
+        </CardContainer>
+      </Dialog.Trigger>
+
+
+      <Dialog.Portal>
         <DialogOverlay />
         <DialogContent>
           <div>
@@ -76,10 +81,10 @@ export const CardLivros = () => {
             </List>
           </Comments>
         </DialogContent>
-    </Dialog.Portal>
+      </Dialog.Portal>
 
-  </>
-    
-    
+    </>
+
+
   );
 }
