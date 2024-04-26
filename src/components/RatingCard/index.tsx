@@ -5,53 +5,53 @@ import { RatingStart } from "../RatingStart";
 import { Book, Rating, User, } from "@prisma/client";
 import emptyuser from '@/src/assets/emptyuser.jpg'
 import Link from "next/link";
-import { useToggleShowMore } from "@/src/hooks/UseToggleShowMore";
+import { useToggleShowMore } from "@/src/hooks/useToggleShowMore";
 
-export type RatingUserBook = {
-  rating: Rating
+export type RatingUserBook = Rating & {
   user: User
   book: Book
 }
 
-type RatingCardProps = {
-  data: RatingUserBook
+export type RatingCardProps = {
+  rating: RatingUserBook
 }
 
+const MAX_LENGTH = 200
 
 
-export function RatingCard({data}: RatingCardProps) {
+export function RatingCard({rating}: RatingCardProps) {
 
-  const {text, isShowMore, toggleShowMore} = useToggleShowMore(data?.book.summary, 180)
+  const {text, isShowMore, toggleShowMore} = useToggleShowMore(rating?.book.summary, MAX_LENGTH)
   return (
     <Container>
       <div>
         <Header>
-          <Link href={`/perfil/${data?.user.id}`}><Avatar src={data?.user?.avatar_url ?? emptyuser} alt={'Foto '+ data?.user?.name ?? 'Anonymus'} /></Link>
+          <Link href={`/perfil/${rating?.user.id}`}><Avatar src={rating?.user.avatar_url ?? emptyuser} alt={'Foto '+ rating?.user.name ?? 'Anonymus'} /></Link>
           <div>
-          <p>{data?.user?.name ?? 'Anonymus'}</p>
-          <span>{data?.user.created_at.toISOString().slice(0, 10).replace(/-/g, '/')}</span>
+          <p>{rating?.user?.name ?? 'Anonymus'}</p>
+          <span>{new Date().toISOString()}</span>
           </div>
         </Header>
 
-        <RatingStart valueRating={data?.rating.rate}/>
+        <RatingStart valueRating={rating.rate}/>
       </div>
 
       <Frame>
         <div>
-        <Link href={`/explorer?book=${data?.book.id}`}><Image
+        <Link href={`/explorer?book=${rating?.book.id}`}><Image
           height={152}
           width={108}
-          src={data.book.cover_url}
+          src={rating?.book.cover_url}
           alt="CARD"
         /></Link>
 
         </div>
 
         <div>
-        <h2>{data.book.name}</h2>
-        <span>{data.book.author}</span>
+        <h2>{rating?.book.name}</h2>
+        <span>{rating?.book.author}</span>
         <p>{text}
-        {data.book.summary.length > 180 && (
+        {rating?.book.summary.length > MAX_LENGTH && (
               <ToggleShowMoreButton onClick={toggleShowMore}>
                 {isShowMore ? "ver menos" : "ver mais"}
               </ToggleShowMoreButton>)}

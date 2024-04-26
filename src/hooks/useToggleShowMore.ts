@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const useToggleShowMore = (strings: string, maxLength: number) => {
     const [showMore, setShowMore] = useState(()=> {
-        return strings.length >= maxLength
+        return strings.length <= maxLength
     })
 
     const toggleShowMore = ()=> {
