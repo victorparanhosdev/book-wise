@@ -1,53 +1,61 @@
 import Image from "next/image";
 import { Avatar } from "../Avatar";
-import { Container, Header, Frame } from "./styles";
+import { Container, Header, Frame, ToggleShowMoreButton } from "./styles";
 import { RatingStart } from "../RatingStart";
 import { Book, Rating, User, } from "@prisma/client";
 import emptyuser from '@/src/assets/emptyuser.jpg'
 import Link from "next/link";
-export type RatingWithAuthorAndBook = Rating & {
+import { useToggleShowMore } from "@/src/hooks/UseToggleShowMore";
+
+export type RatingUserBook = {
+  rating: Rating
   user: User
   book: Book
 }
 
 type RatingCardProps = {
-  rating: RatingWithAuthorAndBook
+  data: RatingUserBook
 }
 
-export function RatingCard({rating}: RatingCardProps) {
+
+
+export function RatingCard({data}: RatingCardProps) {
+
+  const {text, isShowMore, toggleShowMore} = useToggleShowMore(data?.book.summary, 180)
   return (
     <Container>
       <div>
         <Header>
-          <Link href={`/perfil${rating?.user_id}`}><Avatar src={rating?.user?.avatar_url ?? emptyuser} alt={'Foto '+ rating?.user?.name ?? 'Anonymus'} /></Link>
+          <Link href={`/perfil/${data?.user.id}`}><Avatar src={data?.user?.avatar_url ?? emptyuser} alt={'Foto '+ data?.user?.name ?? 'Anonymus'} /></Link>
           <div>
-          <p>{rating?.user?.name ?? 'Anonymus'}</p>
-          <span>Hoje</span>
+          <p>{data?.user?.name ?? 'Anonymus'}</p>
+          <span>{data?.user.created_at.toISOString().slice(0, 10).replace(/-/g, '/')}</span>
           </div>
         </Header>
 
-        <RatingStart />
+        <RatingStart valueRating={data?.rating.rate}/>
       </div>
 
       <Frame>
         <div>
-
-        <Image
+        <Link href={`/explorer?book=${data?.book.id}`}><Image
           height={152}
           width={108}
-          src="https://marketplace.canva.com/EAFLe92Oed0/1/0/251w/canva-0vQILA5gRW8.jpg"
+          src={data.book.cover_url}
           alt="CARD"
-        />
+        /></Link>
+
         </div>
 
         <div>
-        <h2>O Hobbit</h2>
-        <span>J.R.R Tokleien</span>
-        <p>
-          Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-          aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo a
-          in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed
-          vulputate massa velit nibh
+        <h2>{data.book.name}</h2>
+        <span>{data.book.author}</span>
+        <p>{text}
+        {data.book.summary.length > 180 && (
+              <ToggleShowMoreButton onClick={toggleShowMore}>
+                {isShowMore ? "ver menos" : "ver mais"}
+              </ToggleShowMoreButton>)}
+        
         </p>
         </div>
 

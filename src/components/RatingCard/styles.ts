@@ -52,11 +52,7 @@ export const Frame = styled('div', {
       marginTop: '2rem',
       color: '$gray300',
       fontSize: '$text_sm',
-      display: '-webkit-box',
-      '-webkit-line-clamp': 4,
-      '-webkit-box-orient': 'vertical',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden'
+  
     }
   }
 
@@ -87,3 +83,16 @@ export const Header = styled('header', {
     
     
     })
+
+export const ToggleShowMoreButton = styled('button', {
+  background: "none",
+  cursor: 'pointer',
+  border: "none",
+  fontSize: "1.4rem",
+  color: "$purple100",
+  fontWeight: "$bold",
+  marginLeft: "1rem",
+  '&:hover': {
+    filter: 'grayscale(30%)'
+  }
+})
