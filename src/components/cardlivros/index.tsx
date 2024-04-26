@@ -1,21 +1,9 @@
 
 import { CardContainer } from "./styles";
 import * as Dialog from '@radix-ui/react-dialog'
-import {
-  DialogContent,
-  DialogOverlay,
-  DialogClose,
-  Comments,
-  TitleComents,
-  ItemList,
-  List
-} from './styles'
-import { BookDetails } from "@/src/components/bookdetails";
-import { Avatar } from "@/src/components/Avatar";
-
 import Image from "next/image";
-import { X } from "phosphor-react";
 import { RatingStart } from "../RatingStart";
+import { DialogBook } from "../Dialog";
 
 export const CardLivros = () => {
   return (
@@ -33,55 +21,12 @@ export const CardLivros = () => {
             <h2>A Revolução dos bichos</h2>
             <p>George Orwell</p>
 
-            <RatingStart />
+            <RatingStart valueRating={5} />
           </div>
         </CardContainer>
       </Dialog.Trigger>
 
-
-      <Dialog.Portal>
-        <DialogOverlay />
-        <DialogContent>
-          <div>
-            <DialogClose>
-              <X size={24} />
-            </DialogClose>
-          </div>
-
-          <BookDetails />
-          <Comments>
-            <TitleComents>
-              <p>Avaliações</p>
-              <button>Avaliar</button>
-            </TitleComents>
-
-            <List>
-              <ItemList>
-                <header>
-                  <Avatar
-                    alt={`foto perfil de victor`}
-                    src="https://github.com/victorparanhosdev.png"
-                  />
-                  <div>
-                    <h2>Brandom Botosh</h2>
-                    <span>Há 2 dias</span>
-                  </div>
-                  <div>
-                    <span>******</span>
-                  </div>
-                </header>
-
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Dolor qui maiores fugit deleniti! Fuga, itaque, aliquid atque
-                  sint molestias voluptas perferendis provident asperiores nisi
-                  recusandae tempora animi assumenda aut incidunt.
-                </p>
-              </ItemList>
-            </List>
-          </Comments>
-        </DialogContent>
-      </Dialog.Portal>
+      <DialogBook />
 
     </>
 

@@ -5,10 +5,7 @@ import { NextPageWithLayout } from "../_app.page";
 import { Content, TitleAvaliacao, ContentRight, Section } from "./styles";
 import { RatingCard, RatingUserBook } from "@/src/components/RatingCard";
 import { CardLivros } from "@/src/components/cardlivros";
-import { useQuery } from "@tanstack/react-query";
-
-
-
+import {useQuery} from '@tanstack/react-query'
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
 
@@ -26,11 +23,11 @@ const Home: NextPageWithLayout = () => {
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
           <Section>
 
-           {ratings?.map((rating => {
+           {ratings?.map((rating: RatingUserBook) => {
             return(
               <RatingCard key={rating.id} rating={rating}/>
             )
-           }))}
+           })}
             
           </Section>
         </div>
