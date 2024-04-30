@@ -1,4 +1,6 @@
 import { styled } from "@/styles/stitches.config"
+
+
 export const Container = styled("div", {
   background: "$gray800",
   border: "1px solid currentColor",
