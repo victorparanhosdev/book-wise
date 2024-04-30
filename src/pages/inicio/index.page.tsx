@@ -29,7 +29,6 @@ const Home: NextPageWithLayout = () => {
   }})
 
 
-  console.log(books)
 
   return (
     <main>
@@ -58,7 +57,7 @@ const Home: NextPageWithLayout = () => {
           </div>
 
           <div>
-            {<h1>Carregando</h1> && books?.map((book: PopBooks) => {
+            {books?.map((book: PopBooks) => {
               return (
                 <CardLivros key={book.id} popbook={book}/>
               )

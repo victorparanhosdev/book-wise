@@ -5,7 +5,7 @@ import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { DefaultSeo } from "next-seo";
 import { SessionProvider } from "next-auth/react"
-import * as Dialog from '@radix-ui/react-dialog'
+
 import {queryClient} from '@/src/lib/react-query'
 import { QueryClientProvider } from "@tanstack/react-query";
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -24,7 +24,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
   return (
     <QueryClientProvider client={queryClient}>
     <SessionProvider session={session}>
-    <Dialog.Root>
+
       <Head>
         <title>Book Wise</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -39,7 +39,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
         }}
       />
       <div>{getLayout(<Component {...pageProps} />)}</div>
-      </Dialog.Root>
+
       </SessionProvider>
       </QueryClientProvider>
   );

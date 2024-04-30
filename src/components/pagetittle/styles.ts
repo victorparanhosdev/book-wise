@@ -5,7 +5,7 @@ export const Container = styled("div", {
   alignItems: "center",
   gap: "$12",
   marginBottom: '4rem',
-  marginTop: '7.2rem',
+
   svg: {
     color: "$green100",
   },

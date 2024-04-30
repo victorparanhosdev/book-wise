@@ -5,6 +5,7 @@ export const CardContainer = styled('button', {
   width: '100%',
 
   '> div:nth-child(1)': {
+
     background: '$gray700',
     borderRadius: '$sm',
     padding: '1.8rem 2rem',
@@ -33,6 +34,7 @@ export const CardContainer = styled('button', {
       objectFit: 'cover',
       height: '9.4rem',
       minWidth: '6.4rem',
+
       borderRadius: '$xs',
     },
   

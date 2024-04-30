@@ -1,6 +1,6 @@
 
 import { CardContainer } from "./styles";
-import * as Dialog from '@radix-ui/react-dialog'
+
 import Image from "next/image";
 import { RatingStart } from "../RatingStart";
 import { PopBooks } from "@/src/pages/inicio/index.page";
@@ -10,15 +10,14 @@ type PopBookProps = {
 
 }
 
-export const CardLivros = ({popbook}: PopBookProps) => {
+export const CardLivros = ({ popbook }: PopBookProps) => {
 
   return (
-      <Dialog.Trigger asChild>
-        <CardContainer>
-          <div>
+      <CardContainer>
+        <div>
           <Image
-            height={80}
-            width={80}
+            height={0}
+            width={0}
             src={popbook?.cover_url ?? ''}
             alt={`Imagem do Livro ${popbook?.name}`}
           />
@@ -28,8 +27,8 @@ export const CardLivros = ({popbook}: PopBookProps) => {
 
             <RatingStart valueRating={popbook?.avgRating!} />
           </div>
-          </div>
-        </CardContainer>
-      </Dialog.Trigger>
+        </div>
+      </CardContainer>
+
   );
 }
