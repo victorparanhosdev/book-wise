@@ -14,6 +14,7 @@ export const TitleAvaliacao = styled("div", {
 });
 
 export const ContentRight = styled("aside", {
+  maxWidth: '32.4rem',
   "> div:nth-child(1)": {
     display: "flex",
     alignItems: "baseline",
@@ -44,9 +45,6 @@ export const ContentRight = styled("aside", {
     },
   },
 
-  "> div:nth-child(2)": {
-    minWidth: '32.4rem'
-  }
 });
 
 export const Section = styled('section', {

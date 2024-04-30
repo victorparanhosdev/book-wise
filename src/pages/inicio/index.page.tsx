@@ -8,12 +8,28 @@ import { CardLivros } from "@/src/components/cardlivros";
 import {useQuery} from '@tanstack/react-query'
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
+import { Book } from "@prisma/client";
+
+export type PopBooks = Book & {
+  avgRating: number
+}
+
+
 
 const Home: NextPageWithLayout = () => {
   const {data: ratings} = useQuery<RatingUserBook[]>({queryKey: ['ratings-latest'], queryFn: async () => {
     const {data} = await api.get('/ratings/latest')
     return data?.ratings ?? []
   }})
+
+  const {data: books} = useQuery<PopBooks[]>({queryKey: ['popular-books'], queryFn: async ()=> {
+    const {data} = await api.get('/books/popular')
+    
+    return data ?? []
+  }})
+
+
+  console.log(books)
 
   return (
     <main>
@@ -42,10 +58,12 @@ const Home: NextPageWithLayout = () => {
           </div>
 
           <div>
-            <CardLivros />
-            <CardLivros />
-            <CardLivros />
-            <CardLivros />
+            {<h1>Carregando</h1> && books?.map((book: PopBooks) => {
+              return (
+                <CardLivros key={book.id} popbook={book}/>
+              )
+            })}
+        
           </div>
         </ContentRight>
       </Content>

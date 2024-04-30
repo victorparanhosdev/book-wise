@@ -3,33 +3,33 @@ import { CardContainer } from "./styles";
 import * as Dialog from '@radix-ui/react-dialog'
 import Image from "next/image";
 import { RatingStart } from "../RatingStart";
-import { DialogBook } from "../Dialog";
+import { PopBooks } from "@/src/pages/inicio/index.page";
 
-export const CardLivros = () => {
+type PopBookProps = {
+  popbook: PopBooks
+
+}
+
+export const CardLivros = ({popbook}: PopBookProps) => {
+
   return (
-
-    <>
       <Dialog.Trigger asChild>
         <CardContainer>
+          <div>
           <Image
             height={80}
             width={80}
-            src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            src={popbook?.cover_url ?? ''}
+            alt={`Imagem do Livro ${popbook?.name}`}
           />
           <div>
-            <h2>A Revolução dos bichos</h2>
-            <p>George Orwell</p>
+            <h2>{popbook?.name}</h2>
+            <p>{popbook?.author}</p>
 
-            <RatingStart valueRating={5} />
+            <RatingStart valueRating={popbook?.avgRating!} />
+          </div>
           </div>
         </CardContainer>
       </Dialog.Trigger>
-
-      <DialogBook />
-
-    </>
-
-
   );
 }
