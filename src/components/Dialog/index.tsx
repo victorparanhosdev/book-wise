@@ -84,10 +84,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                   <p>Categoria</p>
 
                   {book?.categories.map(categories=> {
-                    
-                    if(book.categories.length <= 0){
-                      return <span key={categories.category.id}>{categories.category.name}</span>
-                    }
+
                     return <span key={categories.category.id}>{categories.category.name}</span>
                   })}
 
