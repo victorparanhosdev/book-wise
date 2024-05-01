@@ -1,10 +1,10 @@
 import { CardContainer, ImageContainer, Content, CardMain } from "./styles";
-
 import Image from "next/image";
 import { RatingStart } from "../RatingStart";
 import { PopBooks } from "@/src/pages/inicio/index.page";
 import { ComponentProps } from "@stitches/react";
 import { DialogBook } from "../Dialog";
+import { ReadBadge } from "../ReadBadge";
 
 type PopBookProps = ComponentProps<typeof ImageContainer> & {
   popbook: PopBooks;
@@ -16,16 +16,18 @@ type PopBookProps = ComponentProps<typeof ImageContainer> & {
 
 export const CardLivros = ({ size = "md", sizePadding = 'min', popbook }: PopBookProps) => {
 
-
+ 
   return (
-    <DialogBook bookId={popbook.id}>
+    <DialogBook bookId={popbook?.id}>
     <CardContainer>
+    <ReadBadge title="Lido" />
+
       <CardMain sizePadding={sizePadding}>
         <ImageContainer size={size}>
           <Image
             height={0}
             width={0}
-            src={popbook?.cover_url ?? ""}
+            src={popbook?.cover_url}
             alt={`Imagem do Livro ${popbook?.name}`}
           />
         </ImageContainer>
@@ -33,7 +35,7 @@ export const CardLivros = ({ size = "md", sizePadding = 'min', popbook }: PopBoo
           <h2>{popbook?.name}</h2>
           <p>{popbook?.author}</p>
 
-          <RatingStart valueRating={popbook?.avgRating!} />
+          <RatingStart valueRating={popbook?.avgRating} />
         </Content>
       </CardMain>
     </CardContainer>

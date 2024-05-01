@@ -18,23 +18,35 @@ import { ReactNode, useState } from "react";
 import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
-import { Book } from "@prisma/client";
+import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
 
-type DialogProps = {
+type BookDetails = Book & {
+  categories: CategoriesOnBooks & {
+    category: Category
+  }[]
+  ratings: Rating & {
+    rating: Rating
+  }[]
+  avgRating: number
+}
+
+type DialogProps =  {
   children: ReactNode
   bookId: string
 };
 
 export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false)
-
-  const {data: book} = useQuery<Book>({queryKey: ['expand-explorer'], queryFn: async()=> {
+ 
+  const {data: book} = useQuery<BookDetails>({queryKey: ['expand-explorer'], queryFn: async()=> {
     const {data} = await api.get(`/books/details/${bookId}`)
 
     return data ?? {}
   },
   enabled: open
   })
+
+
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -47,8 +59,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
               <X size={24} />
             </DialogClose>
           </div>
-
-          <BookContainer>
+            {!book ? <h1>Carregando....</h1> : <BookContainer>
             <ContentOne>
               <div>
                 <Image
@@ -62,7 +73,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                 <h1>{book?.name}</h1>
                 <span>{book?.author}</span>
 
-                <RatingStart valueRating={5} />
+                <RatingStart valueRating={book?.avgRating} />
               </div>
             </ContentOne>
 
@@ -70,19 +81,27 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
               <div>
                 <BookmarkSimple size={24} />
                 <div>
-                  <span>Categoria</span>
-                  <p>Computação, educação</p>
+                  <p>Categoria</p>
+
+                  {book?.categories.map(categories=> {
+                    
+                    if(book.categories.length <= 0){
+                      return <span key={categories.category.id}>{categories.category.name}</span>
+                    }
+                    return <span key={categories.category.id}>{categories.category.name}</span>
+                  })}
+
                 </div>
               </div>
               <div>
                 <BookOpen size={24} />
                 <div>
                   <span>Páginas</span>
-                  <p>160</p>
+                  <p>{book?.total_pages}</p>
                 </div>
               </div>
             </ContentTwo>
-          </BookContainer>
+          </BookContainer>}
 
           
           <Comments>

@@ -3,6 +3,7 @@ import { styled } from "@/styles/stitches.config";
 export const CardContainer = styled("button", {
   all: "unset",
   width: "100%",
+  position: 'relative'
  
 });
 
@@ -73,11 +74,13 @@ export const Content = styled('div', {
   h2: {
     fontSize: "$heading_xs",
     textOverflow: "ellipsis",
-    "-webkit-line-clamp": 1,
+    "-webkit-line-clamp": 2,
     "-webkit-box-orient": "vertical",
     display: "-webkit-box",
     overflow: "hidden",
     width: "100%",
+    position: 'relative',
+    zIndex: 1,
   },
   p: {
     color: "$gray400",

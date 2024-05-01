@@ -137,12 +137,12 @@ export const ContentTwo = styled("div", {
     marginRight: '1.6rem'
   },
 
-  span: {
+  p: {
     fontSize: '$text_sm',
     color: '$gray300',
     fontWeight: '$regular'
   },
-  p: {
+  span: {
     color: '$gray200',
     fontSize: '$heading_xs',
     fontWeight: '$bold'
@@ -223,3 +223,4 @@ export const ItemList = styled("li", {
     fontSize: "$text_sm",
   },
 });
+
