@@ -14,18 +14,31 @@ import {
 import Image from "next/image";
 import { BookOpen, BookmarkSimple, X } from "phosphor-react";
 import { Avatar } from "../Avatar";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { RatingStart } from "../RatingStart";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/src/lib/axios";
+import { Book } from "@prisma/client";
 
 type DialogProps = {
-  children: ReactNode;
+  children: ReactNode
+  bookId: string
 };
 
-export const DialogBook = ({ children }: DialogProps) => {
-  return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
+export const DialogBook = ({ children, bookId }: DialogProps) => {
+  const [open, setOpen] = useState(false)
 
+  const {data: book} = useQuery<Book>({queryKey: ['expand-explorer'], queryFn: async()=> {
+    const {data} = await api.get(`/books/details/${bookId}`)
+
+    return data ?? {}
+  },
+  enabled: open
+  })
+
+  return (
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay />
         <DialogContent>
@@ -41,13 +54,13 @@ export const DialogBook = ({ children }: DialogProps) => {
                 <Image
                   width={80}
                   height={80}
-                  src="https://github.com/victorparanhosdev.png"
-                  alt="as"
+                  src={book?.cover_url!}
+                  alt={`Imagem de ${book?.name}`}
                 />
               </div>
               <div>
-                <h1>14 Hábitos de Desenvolvedores Altamente Produtivos</h1>
-                <span>Zeno Rocha</span>
+                <h1>{book?.name}</h1>
+                <span>{book?.author}</span>
 
                 <RatingStart valueRating={5} />
               </div>

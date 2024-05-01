@@ -9,6 +9,7 @@ import {useQuery} from '@tanstack/react-query'
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
 import { Book } from "@prisma/client";
+import { DialogBook } from "@/src/components/Dialog";
 
 export type PopBooks = Book & {
   avgRating: number
@@ -59,7 +60,7 @@ const Home: NextPageWithLayout = () => {
           <div>
             {books?.map((book: PopBooks) => {
               return (
-                <CardLivros key={book.id} popbook={book}/>
+                <DialogBook  key={book.id} bookId={book.id}><CardLivros size="sm" popbook={book}/></DialogBook>
               )
             })}
         

@@ -24,7 +24,7 @@ export const globalStyle = globalCss({
 
   '::-webkit-scrollbar': {
     width: '0.6rem',
-    height: '0.4rem',
+    height: '0.6rem',
     background: '$gray700',
     borderRadius: '$full'
   },

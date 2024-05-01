@@ -15,11 +15,13 @@ export const DefaultLayoutContainer = styled('div', {
 
 export const Content = styled('div', {  
     marginTop: '7.2rem',
-    maxWidth: '120rem',
-    overflowY: 'auto',
+    maxWidth: '99.6rem',
+    overflow:'auto',
+     /* Esconder scrollbar horizontal, se existir */
     '&::-webkit-scrollbar': {
-        display: 'none'    
-        },
+        width: 0,
+      
+    },
 
   
 })

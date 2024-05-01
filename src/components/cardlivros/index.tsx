@@ -1,34 +1,42 @@
-
-import { CardContainer } from "./styles";
+import { CardContainer, ImageContainer, Content, CardMain } from "./styles";
 
 import Image from "next/image";
 import { RatingStart } from "../RatingStart";
 import { PopBooks } from "@/src/pages/inicio/index.page";
+import { ComponentProps } from "@stitches/react";
+import { DialogBook } from "../Dialog";
 
-type PopBookProps = {
-  popbook: PopBooks
+type PopBookProps = ComponentProps<typeof ImageContainer> & {
+  popbook: PopBooks;
+  size?: "sm" | "md" | "lg";
+  sizePadding?: "min" | "max" 
+};
 
-}
 
-export const CardLivros = ({ popbook }: PopBookProps) => {
+
+export const CardLivros = ({ size = "md", sizePadding = 'min', popbook }: PopBookProps) => {
+
 
   return (
-      <CardContainer>
-        <div>
+    <DialogBook bookId={popbook.id}>
+    <CardContainer>
+      <CardMain sizePadding={sizePadding}>
+        <ImageContainer size={size}>
           <Image
             height={0}
             width={0}
-            src={popbook?.cover_url ?? ''}
+            src={popbook?.cover_url ?? ""}
             alt={`Imagem do Livro ${popbook?.name}`}
           />
-          <div>
-            <h2>{popbook?.name}</h2>
-            <p>{popbook?.author}</p>
+        </ImageContainer>
+        <Content>
+          <h2>{popbook?.name}</h2>
+          <p>{popbook?.author}</p>
 
-            <RatingStart valueRating={popbook?.avgRating!} />
-          </div>
-        </div>
-      </CardContainer>
-
+          <RatingStart valueRating={popbook?.avgRating!} />
+        </Content>
+      </CardMain>
+    </CardContainer>
+    </DialogBook>
   );
-}
+};

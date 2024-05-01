@@ -10,14 +10,13 @@ import { Tag } from "@/src/components/Tag";
 import { CardLivros } from "@/src/components/cardlivros";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
-import { Book } from "@prisma/client";
 import { PopBooks } from "../inicio/index.page";
 
 const Explorer: NextPageWithLayout = () => {
   const [search, setSearch] = useState<string>("");
 
   const {data: books} = useQuery({queryKey: ['explorer-books'], queryFn: async()=> {
-    const {data} = await api.get('/books/popular')
+    const {data} = await api.get('/books/explorer')
     return data ?? []
   }})
 
@@ -42,7 +41,9 @@ const Explorer: NextPageWithLayout = () => {
 
         <SectionBooks>
           {books?.map((book: PopBooks, i: string)=> {
-            return <CardLivros popbook={book} key={i}/>
+            return (
+              <CardLivros popbook={book} key={i}/>
+            )
           })}
 
         </SectionBooks>
