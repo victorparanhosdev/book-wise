@@ -11,7 +11,7 @@ export const CardContainer = styled('button', {
     padding: '1.8rem 2rem',
     display: 'flex',
     gap: '2rem',
-    marginBottom: '1.2rem',
+
     border: '2px solid transparent',
     cursor: 'pointer',
     transition: 'border-color 0.2s',
@@ -24,7 +24,13 @@ export const CardContainer = styled('button', {
   
   
     h2: {
-      fontSize: '$heading_xs'
+      fontSize: '$heading_xs',
+      textOverflow: 'ellipsis',
+      '-webkit-line-clamp': 1,
+      '-webkit-box-orient': 'vertical',
+      display: '-webkit-box',
+      overflow: 'hidden',
+      width: '100%',
     },
     p: {
       color: '$gray400',

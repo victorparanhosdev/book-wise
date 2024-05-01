@@ -5,6 +5,7 @@ export const Container = styled("div", {
   alignItems: "center",
   gap: "$12",
   marginBottom: '4rem',
+  gridArea: 'title',
 
   svg: {
     color: "$green100",

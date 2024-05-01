@@ -11,6 +11,8 @@ export const Container = styled("div", {
   padding: '1.4rem 2rem',
   gap: '$8',
   height: '4.8rem',
+  gridArea: 'search',
+  justifySelf: 'right',
 
   color: "$gray500",
   transition: "0.2s",

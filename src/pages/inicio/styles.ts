@@ -14,7 +14,7 @@ export const TitleAvaliacao = styled("div", {
 });
 
 export const ContentRight = styled("aside", {
-  maxWidth: '32.4rem',
+  minWidth: '32.4rem',
   "> div:nth-child(1)": {
     display: "flex",
     alignItems: "baseline",
@@ -43,7 +43,13 @@ export const ContentRight = styled("aside", {
         height: "1.6rem",
       },
     },
+    
   },
+
+  "> div:nth-child(2)": {
+    display: 'grid',
+    gap: '1.2rem'
+  }
 
 });
 
