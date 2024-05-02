@@ -33,7 +33,7 @@ export function RatingCard({rating}: RatingCardProps) {
           </div>
         </Header>
 
-        <RatingStart valueRating={rating.rate}/>
+        <RatingStart valueRating={rating?.rate}/>
       </div>
 
       <Frame>

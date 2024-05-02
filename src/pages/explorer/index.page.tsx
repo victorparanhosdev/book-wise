@@ -20,7 +20,6 @@ const Explorer: NextPageWithLayout = () => {
     return data ?? []
   }})
 
-
   return (
     <Container>
       <PageTitle title="Explorer" icon={<Binoculars size={32} />} />
@@ -40,9 +39,9 @@ const Explorer: NextPageWithLayout = () => {
         </Category>
 
         <SectionBooks>
-          {books?.map((book: PopBooks, i: string)=> {
+          {books?.map((book: PopBooks)=> {
             return (
-              <CardLivros popbook={book} key={i}/>
+              <CardLivros popbook={book} key={book.id}/>
             )
           })}
 

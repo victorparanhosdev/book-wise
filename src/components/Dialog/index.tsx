@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import { BookOpen, BookmarkSimple, X } from "phosphor-react";
 import { Avatar } from "../Avatar";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
@@ -36,6 +36,8 @@ type DialogProps = {
   children: ReactNode;
   bookId: string;
 };
+
+
 
 export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
@@ -61,7 +63,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
       <Dialog.Portal>
         <DialogOverlay />
         <DialogContent>
-          <div>
+        <div>
             <DialogClose>
               <X size={24} />
             </DialogClose>

@@ -60,7 +60,7 @@ const Home: NextPageWithLayout = () => {
           <div>
             {books?.map((book: PopBooks) => {
               return (
-                <DialogBook  key={book.id} bookId={book.id}><CardLivros size="sm" popbook={book}/></DialogBook>
+                <CardLivros key={book.id} size="sm" popbook={book}/>
               )
             })}
         

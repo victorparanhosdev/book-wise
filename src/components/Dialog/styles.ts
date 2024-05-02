@@ -68,7 +68,7 @@ export const DialogContent = styled(Dialog.Content, {
   },
 
   '&[data-state="closed"]': {
-    animation: `${contentHidden} 0.3s`,
+    animation: `${contentHidden} 0.1s`,
   },
 });
 
