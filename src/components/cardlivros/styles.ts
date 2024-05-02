@@ -17,9 +17,10 @@ export const CardMain = styled('div', {
   
     border: "2px solid transparent",
     cursor: "pointer",
-    transition: "border-color 0.2s",
+
   
     "&:hover": {
+      transition: "border-color 0.2s",
       borderColor: "$gray600",
     },
   

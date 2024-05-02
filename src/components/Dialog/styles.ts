@@ -111,6 +111,7 @@ export const ContentOne = styled("div", {
     fontSize: "$text_md",
     color: "$gray300",
     fontWeight: "$regular",
+    marginBottom: 'auto'
   },
 
   p: {
