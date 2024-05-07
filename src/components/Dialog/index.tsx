@@ -14,17 +14,10 @@ import { ReactNode, useState } from "react";
 import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
-import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
+
 import { BookRatings } from "../BookRatings";
 
 
-export type BookDetails = Book & {
-  categories: (CategoriesOnBooks & {
-    category: Category;
-  })[];
-  ratings: Rating[];
-  avgRating: number;
-};
 
 export type DialogProps = {
   children: ReactNode;
@@ -36,7 +29,7 @@ export type DialogProps = {
 export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
-  const { data: book } = useQuery<BookDetails>({
+  const { data: book } = useQuery<any>({
     queryKey: ["expand-explorer"],
     queryFn: async () => {
       const { data } = await api.get(`/books/details/${bookId}`);
@@ -47,10 +40,10 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
   });
 
   const categoriesEdited =
-    book?.categories?.map((x) => x?.category?.name)?.join(", ") ?? "";
+    book?.categories?.map((x: { category: { name: any; }; }) => x?.category?.name)?.join(", ") ?? "";
 
   const ratingsLength = book?.ratings?.length ?? 0   
-  console.log(book?.ratings)
+  console.log(book)
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -106,7 +99,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                   </div>
                 </ContentTwo>
               </BookContainer>
-              <BookRatings bookId={bookId} ratings={book.ratings} />
+              <BookRatings bookId={bookId} bookData={book.ratings}/>
             </>
           )}
         </DialogContent>
