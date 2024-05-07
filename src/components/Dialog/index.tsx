@@ -24,6 +24,10 @@ export type DialogProps = {
   bookId: string;
 };
 
+type BookDetails = {
+
+}
+
 
 
 export const DialogBook = ({ children, bookId }: DialogProps) => {
@@ -43,7 +47,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
     book?.categories?.map((x: { category: { name: any; }; }) => x?.category?.name)?.join(", ") ?? "";
 
   const ratingsLength = book?.ratings?.length ?? 0   
-  console.log(book)
+
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -99,7 +103,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                   </div>
                 </ContentTwo>
               </BookContainer>
-              <BookRatings bookId={bookId} bookData={book.ratings}/>
+              <BookRatings bookId={bookId} bookData={book?.ratings}/>
             </>
           )}
         </DialogContent>
