@@ -9,7 +9,7 @@ import {useQuery} from '@tanstack/react-query'
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
 import { Book } from "@prisma/client";
-import { DialogBook } from "@/src/components/Dialog";
+
 
 export type PopBooks = Book & {
   avgRating: number

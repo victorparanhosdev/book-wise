@@ -1,38 +1,32 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import {
-  Comments,
   DialogClose,
   DialogContent,
   DialogOverlay,
-  ItemList,
-  List,
-  TitleComents,
   BookContainer,
   ContentOne,
   ContentTwo,
 } from "./styles";
 import Image from "next/image";
 import { BookOpen, BookmarkSimple, X } from "phosphor-react";
-import { Avatar } from "../Avatar";
+
 import { ReactNode, useState } from "react";
 import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
 import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
+import { BookRatings } from "../BookRatings";
 
 
-type BookDetails = Book & {
+export type BookDetails = Book & {
   categories: (CategoriesOnBooks & {
     category: Category;
   })[];
-  ratings: Rating &
-    {
-      rating: Rating;
-    }[];
+  ratings: Rating[];
   avgRating: number;
 };
 
-type DialogProps = {
+export type DialogProps = {
   children: ReactNode;
   bookId: string;
 };
@@ -55,8 +49,8 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
   const categoriesEdited =
     book?.categories?.map((x) => x?.category?.name)?.join(", ") ?? "";
 
-    
-
+  const ratingsLength = book?.ratings?.length ?? 0   
+  console.log(book?.ratings)
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -86,7 +80,11 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                     <h1>{book?.name}</h1>
                     <span>{book?.author}</span>
 
+    
                     <RatingStart valueRating={book?.avgRating} />
+                    <span>{ratingsLength} {ratingsLength === 1 ? "avaliação" : "avaliações"}</span>
+    
+       
                   </div>
                 </ContentOne>
 
@@ -108,39 +106,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                   </div>
                 </ContentTwo>
               </BookContainer>
-
-              <Comments>
-                <TitleComents>
-                  <p>Avaliações</p>
-                  <button>Avaliar</button>
-                </TitleComents>
-
-                <List>
-                  <ItemList>
-                    <header>
-                      <Avatar
-                        alt={`foto perfil de victor`}
-                        src="https://github.com/victorparanhosdev.png"
-                      />
-                      <div>
-                        <h2>Brandom Botosh</h2>
-                        <span>Há 2 dias</span>
-                      </div>
-                      <div>
-                        <RatingStart valueRating={4} />
-                      </div>
-                    </header>
-
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Dolor qui maiores fugit deleniti! Fuga, itaque, aliquid
-                      atque sint molestias voluptas perferendis provident
-                      asperiores nisi recusandae tempora animi assumenda aut
-                      incidunt.
-                    </p>
-                  </ItemList>
-                </List>
-              </Comments>
+              <BookRatings bookId={bookId} ratings={book.ratings} />
             </>
           )}
         </DialogContent>

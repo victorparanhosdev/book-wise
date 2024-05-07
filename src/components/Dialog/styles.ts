@@ -94,7 +94,14 @@ export const ContentOne = styled("div", {
   "div:nth-child(2)": {
     display: "flex",
     flexDirection: "column",
+
+
+    'span:last-child':{
+      color: '$gray400',
+      fontSize: '$text_sm'
+    }
   },
+
   img: {
     borderRadius: "10px",
     objectFit: "cover",
@@ -111,11 +118,10 @@ export const ContentOne = styled("div", {
     fontSize: "$text_md",
     color: "$gray300",
     fontWeight: "$regular",
-    marginBottom: 'auto'
+  
   },
 
   p: {
-    marginTop: "auto",
     color: 'White'
   },
 });
@@ -153,75 +159,4 @@ export const ContentTwo = styled("div", {
 
 });
 
-
-export const Comments = styled("div", {
-  marginTop: "4rem",
-});
-
-export const TitleComents = styled("div", {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "1.6rem",
-  p: {
-    color: "$gray200",
-    fontSize: "$text_sm",
-    fontWeight: "$regular",
-  },
-
-  button: {
-    all: "unset",
-    cursor: "pointer",
-    color: "$purple100",
-    fontSize: "$button_md",
-    fontWeight: "$bold",
-    padding: "$4 $8",
-    borderRadius: "4px",
-
-    transition: "background 0.2s",
-
-    "&:hover": {
-      background: "$gray700",
-    },
-  },
-});
-
-export const List = styled("ul", {
-  display: "grid",
-  gap: "$12",
-});
-
-export const ItemList = styled("li", {
-  background: "$gray700",
-  borderRadius: "$md",
-  width: "100%",
-  padding: "$24",
-  display: "grid",
-  gap: "$20",
-
-  header: {
-    display: "grid",
-    gridTemplateColumns: "auto auto 1fr",
-    gap: "$16",
-
-    h2: {
-      color: "$gray100",
-      fontSize: "$heading_xs",
-    },
-    span: {
-      color: "$gray400",
-      fontSize: "$text_sm",
-      fontWeight: "$regular",
-    },
-
-    "div:last-child": {
-      justifySelf: "end",
-    },
-  },
-
-  p: {
-    color: "$gray300",
-    fontSize: "$text_sm",
-  },
-});
 
