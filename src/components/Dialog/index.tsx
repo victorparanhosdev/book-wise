@@ -15,7 +15,8 @@ import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
 
-import { BookRatings } from "../BookRatings";
+import { BookRatingProps, BookRatings } from "../BookRatings";
+import { Book, CategoriesOnBooks, Category, Rating, User } from "@prisma/client";
 
 
 
@@ -24,8 +25,14 @@ export type DialogProps = {
   bookId: string;
 };
 
-type BookDetails = {
 
+
+type BookDetails = Book & {
+  categories: CategoriesOnBooks &{
+      category: Category
+  }[]
+  ratings: BookRatingProps[]
+  avgRating: number
 }
 
 
@@ -33,7 +40,7 @@ type BookDetails = {
 export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
-  const { data: book } = useQuery<any>({
+  const { data: book } = useQuery<BookDetails>({
     queryKey: ["expand-explorer"],
     queryFn: async () => {
       const { data } = await api.get(`/books/details/${bookId}`);
@@ -47,6 +54,8 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
     book?.categories?.map((x: { category: { name: any; }; }) => x?.category?.name)?.join(", ") ?? "";
 
   const ratingsLength = book?.ratings?.length ?? 0   
+
+
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>

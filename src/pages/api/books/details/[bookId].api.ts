@@ -31,12 +31,13 @@ export default async function handler(
   const booksAvgRating = await prisma.rating.groupBy({
     by: ['book_id'],
     where: {
-      book_id: bookId
+      book_id: bookId,
     },
     _avg: {
       rate: true
     }
   })
+
 
   const bookWithAvgRating = {
     ...book,

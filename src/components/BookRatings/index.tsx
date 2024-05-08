@@ -3,15 +3,21 @@ import { Rating, User } from "@prisma/client";
 import { UserRatingCard } from "../UserRatingCard";
 import { Comments, List, TitleComents } from "./styles";
 
-
-
-type BookRatingProps = {
-  bookData: any[]
+type BookRating = {
+  bookData: BookRatingProps[]
   bookId: string;
 }
-export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
+
+export type BookRatingProps = {
+  rating: Rating & {
+    user: User
+  }
+}
 
 
+export const BookRatings = ({ bookData, bookId }: BookRating) => {
+
+  console.log(bookData)
   return (
     <Comments>
       <TitleComents>
@@ -19,8 +25,8 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
         <button>Avaliar</button>
       </TitleComents>
       <List>
-        {bookData?.map((data) => {
-          return <UserRatingCard key={data.id} rating={data} />;
+        {bookData?.map((data: BookRatingProps) => {
+          return <UserRatingCard key={data.rating.id} rating={data.rating} />;
         })}
       </List>
     </Comments>
