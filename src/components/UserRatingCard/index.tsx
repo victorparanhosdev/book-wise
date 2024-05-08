@@ -5,12 +5,10 @@ import { ItemList} from "./styles";
 import Link from "next/link";
 import { Avatar } from "../Avatar";
 import { RatingStart } from "../RatingStart";
-import { Rating, User } from "@prisma/client";
+import { RatingsProps } from "../Dialog";
 
 export type UserRatingCardProps = {
-  rating: Rating & {
-    user: User
-  }
+  rating: RatingsProps
 }
 
 export const UserRatingCard = ({ rating }: UserRatingCardProps) => {

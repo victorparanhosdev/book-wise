@@ -15,7 +15,7 @@ import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
 
-import { BookRatingProps, BookRatings } from "../BookRatings";
+import {BookRatings } from "../BookRatings";
 import { Book, CategoriesOnBooks, Category, Rating, User } from "@prisma/client";
 
 
@@ -25,13 +25,17 @@ export type DialogProps = {
   bookId: string;
 };
 
+export type CategoriesOnBooksProps = CategoriesOnBooks & {
+  category: Category
+}
 
+export type RatingsProps = Rating & {
+  user: User
+}
 
-type BookDetails = Book & {
-  categories: CategoriesOnBooks &{
-      category: Category
-  }[]
-  ratings: BookRatingProps[]
+export type BookDetails = Book & {
+  categories: CategoriesOnBooksProps[]
+  ratings: RatingsProps[]
   avgRating: number
 }
 
@@ -51,7 +55,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
   });
 
   const categoriesEdited =
-    book?.categories?.map((x: { category: { name: any; }; }) => x?.category?.name)?.join(", ") ?? "";
+    book?.categories?.map((x) => x?.category?.name)?.join(", ") ?? "";
 
   const ratingsLength = book?.ratings?.length ?? 0   
 

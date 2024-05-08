@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { globalStyle } from "@/styles/global";
-import Head from "next/head";
+
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { DefaultSeo } from "next-seo";
@@ -25,10 +25,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
     <QueryClientProvider client={queryClient}>
     <SessionProvider session={session}>
 
-      <Head>
-        <title>Book Wise</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </Head>
+
       <DefaultSeo
         title="Book Wise"
         description="Book Wise feito por Victor Paranhos"
@@ -36,6 +33,7 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
           type: "website",
           locale: "pt_BR",
           siteName: "Book Wise",
+          
         }}
       />
       <div>{getLayout(<Component {...pageProps} />)}</div>
