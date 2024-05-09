@@ -91,7 +91,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
                     <span>{book?.author}</span>
 
     
-                    <RatingStart valueRating={book?.avgRating} />
+                    <RatingStart size={16} valueRating={book?.avgRating} />
                     <span>{ratingsLength} {ratingsLength === 1 ? "avaliação" : "avaliações"}</span>
     
        
