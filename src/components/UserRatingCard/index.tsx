@@ -31,7 +31,7 @@ export const UserRatingCard = ({ rating }: UserRatingCardProps) => {
           <span>{distance}</span>
         </div>
         <div>
-          <RatingStart valueRating={rating.rate} />
+          <RatingStart size={16} valueRating={rating.rate} />
         </div>
       </header>
 

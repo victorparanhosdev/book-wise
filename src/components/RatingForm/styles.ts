@@ -6,30 +6,6 @@ export const Container = styled("div", {
     padding: '2.4rem',
     borderRadius: "$sm",
 
-    textarea: {
-        marginTop: '2.4rem',
-        background: '$gray800',
-        border: '1px solid $gray500',
-        borderRadius: '$xs',
-        minHeight: '16.4rem',
-        width: '100%',
-        resize: 'none',
-        padding: '1.4rem 2rem',
-        color: '$gray400',
-      
-
-        '&:focus': {
-            outline:'2px solid $gray500',
-        },
-    
-
-        '&::placeholder': {
-            color: '$gray400',
-            fontSize: '1.4rem',
-            fontWeight: '$regular',
-            lineHeight: '160%'
-        }
-    }
 
   })
   
@@ -68,6 +44,14 @@ export const ContainerButton = styled('div', {
         padding: '8px',
         display: 'flex',
         borderRadius: '4px',
+        transition: 'background 0.2s',
+        '&:not(:disabled):hover':{
+            background: '$gray500'
+        },
+        '&:disabled':{
+            opacity: '0.5',
+            cursor: 'not-allowed'
+        },
 
         svg: {
             color: '$green100'
