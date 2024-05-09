@@ -29,7 +29,7 @@ export const RatingForm = ({ bookId, onCancel }: RatingFromProps) => {
               <p>{user.name}</p>
             </section>
 
-            <RatingStart size={24} valueRating={currentRating} />
+            <RatingStart setRating={setCurrentRating} size={24} valueRating={currentRating} />
           </UserDetails>
             <form action="">
             <TextArea
