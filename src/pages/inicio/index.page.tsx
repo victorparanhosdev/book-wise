@@ -9,6 +9,7 @@ import {useQuery} from '@tanstack/react-query'
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
 import { Book } from "@prisma/client";
+import { useSession } from "next-auth/react";
 
 
 export type PopBooks = Book & {
@@ -29,6 +30,19 @@ const Home: NextPageWithLayout = () => {
     return data ?? []
   }})
 
+  const { data: session } = useSession();
+
+  const userId = session?.user?.id;
+
+  const { data: latestUserRating } = useQuery<any>({queryKey: ["latest-user-rating", userId], queryFn: async () => {
+    const { data } = await api.get("/ratings/user-latest")
+    return data?.rating ?? null
+  }, 
+  enabled: !!userId
+})
+   
+
+
 
 
   return (
@@ -38,6 +52,17 @@ const Home: NextPageWithLayout = () => {
         <div>
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
           <Section>
+          {latestUserRating && (
+        <div>
+          <header>
+            <h1 >Sua última leitura</h1>
+
+            <Link href={`/perfil/${userId}`} />
+          </header>
+
+          <RatingCard rating={latestUserRating} />
+        </div>
+      )}
 
            {ratings?.map((rating: RatingUserBook) => {
             return(

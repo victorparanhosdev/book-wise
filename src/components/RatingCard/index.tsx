@@ -20,7 +20,7 @@ const MAX_LENGTH = 200
 
 
 export function RatingCard({rating}: RatingCardProps) {
-
+  
   const {text, isShowMore, toggleShowMore} = useToggleShowMore(rating?.book.summary, MAX_LENGTH)
   return (
     <Container>
@@ -29,11 +29,11 @@ export function RatingCard({rating}: RatingCardProps) {
           <Link href={`/perfil/${rating?.user.id}`}><Avatar src={rating?.user.avatar_url ?? emptyuser} alt={'Foto '+ rating?.user.name ?? 'Anonymus'} /></Link>
           <div>
           <p>{rating?.user?.name ?? 'Anonymus'}</p>
-          <span>{new Date().toISOString()}</span>
+          <span>{new Date(rating?.created_at).getHours()}</span>
           </div>
         </Header>
 
-        <RatingStart valueRating={rating?.rate}/>
+        <RatingStart size={16} valueRating={rating?.rate}/>
       </div>
 
       <Frame>

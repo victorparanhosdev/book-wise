@@ -5,7 +5,7 @@ import { Container, UserDetails, ContainerButton } from "./styles";
 import { useSession } from "next-auth/react";
 import { X, Check } from "phosphor-react";
 import { TextArea } from "../TextArea";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
 
 
@@ -24,13 +24,22 @@ export const RatingForm = ({ bookId, onCancel, ...props }: RatingFromProps) => {
 
   const submitDisabled = !description.trim() || !currentRating
 
+  const queryClient = useQueryClient()
+
   const {mutateAsync: handleRate} = useMutation({mutationFn: async () => {
     await api.post(`/books/${bookId}/rate`, {
       description,
       rate: currentRating,
 
-    })
-  }})
+    })}, 
+    onSuccess: ()=> {
+    queryClient.invalidateQueries({queryKey: ["expand-explorer"]})
+    queryClient.invalidateQueries({queryKey: ['explorer-books']})
+    onCancel()
+  }
+
+
+})
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()

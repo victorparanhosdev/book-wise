@@ -18,12 +18,18 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
   const[showForm, setShowFrom] = useState<boolean>(false)
   const {status} = useSession()
 
+
+
   const handleAvaliation = () => {
     if(status === 'unauthenticated'){
       return alert('Por favor logue')
     }
     setShowFrom(true)
   }
+
+  const sortedRatingsByDate = bookData.sort((a,b)=> {
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  })
 
   return (
     <Comments>
@@ -33,7 +39,7 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
       </TitleComents>
       <List>
         {showForm && <RatingForm bookId={bookId} onCancel={()=> setShowFrom(false)}/>}
-        {bookData?.map((data) => {
+        {sortedRatingsByDate?.map((data) => {
           return <UserRatingCard key={data.id} rating={data} />;
         })}
       </List>

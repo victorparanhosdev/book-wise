@@ -35,7 +35,7 @@ export const CardLivros = ({ size = "md", sizePadding = 'min', popbook }: PopBoo
           <h2>{popbook?.name}</h2>
           <p>{popbook?.author}</p>
 
-          <RatingStart valueRating={popbook?.avgRating} />
+          <RatingStart size={16} valueRating={popbook?.avgRating} />
         </Content>
       </CardMain>
     </CardContainer>
