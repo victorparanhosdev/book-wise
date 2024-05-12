@@ -19,6 +19,7 @@ export default async function handler(
 
   if(!session) return res.status(401).end()
 
+
   const latestUserRating = await prisma.rating.findFirst({
     where: {
       user_id: String(session?.user?.id)

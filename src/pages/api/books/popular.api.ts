@@ -43,7 +43,9 @@ export default async function handler(
           avgRating: bookAvgRating?._avg.rate
         }
 
-      })
+      }).sort((a, b) =>
+        a.avgRating && b.avgRating ? b.avgRating - a.avgRating : 0
+      )
   
       return res.json(BookWithAvgRating)
   }

@@ -6,6 +6,7 @@ import { Book, Rating, User, } from "@prisma/client";
 import emptyuser from '@/src/assets/emptyuser.jpg'
 import Link from "next/link";
 import { useToggleShowMore } from "@/src/hooks/useToggleShowMore";
+import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 
 export type RatingUserBook = Rating & {
   user: User
@@ -22,6 +23,7 @@ const MAX_LENGTH = 200
 export function RatingCard({rating}: RatingCardProps) {
   
   const {text, isShowMore, toggleShowMore} = useToggleShowMore(rating?.book.summary, MAX_LENGTH)
+  const distance = getRelativeTimeString(new Date(rating?.created_at), "pt-BR");
   return (
     <Container>
       <div>
@@ -29,7 +31,7 @@ export function RatingCard({rating}: RatingCardProps) {
           <Link href={`/perfil/${rating?.user.id}`}><Avatar src={rating?.user.avatar_url ?? emptyuser} alt={'Foto '+ rating?.user.name ?? 'Anonymus'} /></Link>
           <div>
           <p>{rating?.user?.name ?? 'Anonymus'}</p>
-          <span>{new Date(rating?.created_at).getHours()}</span>
+          <span>{distance}</span>
           </div>
         </Header>
 

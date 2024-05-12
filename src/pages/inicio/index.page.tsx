@@ -5,71 +5,60 @@ import { NextPageWithLayout } from "../_app.page";
 import { Content, TitleAvaliacao, ContentRight, Section } from "./styles";
 import { RatingCard, RatingUserBook } from "@/src/components/RatingCard";
 import { CardLivros } from "@/src/components/cardlivros";
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
-import { Book } from "@prisma/client";
+import { Book, Rating } from "@prisma/client";
 import { useSession } from "next-auth/react";
-
+import { LatestUserRating } from "@/src/components/LatestUserRating";
 
 export type PopBooks = Book & {
-  avgRating: number
-}
+  avgRating: number;
+};
 
-
+export type UserLatestProps = Rating & {
+  book: Book;
+};
 
 const Home: NextPageWithLayout = () => {
-  const {data: ratings} = useQuery<RatingUserBook[]>({queryKey: ['ratings-latest'], queryFn: async () => {
-    const {data} = await api.get('/ratings/latest')
-    return data?.ratings ?? []
-  }})
+  const { data: ratings } = useQuery<RatingUserBook[]>({
+    queryKey: ["ratings-latest"],
+    queryFn: async () => {
+      const { data } = await api.get("/ratings/latest");
+      return data?.ratings ?? [];
+    },
+  });
 
-  const {data: books} = useQuery<PopBooks[]>({queryKey: ['popular-books'], queryFn: async ()=> {
-    const {data} = await api.get('/books/popular')
-    
-    return data ?? []
-  }})
-
-  const { data: session } = useSession();
-
-  const userId = session?.user?.id;
-
-  const { data: latestUserRating } = useQuery<any>({queryKey: ["latest-user-rating", userId], queryFn: async () => {
-    const { data } = await api.get("/ratings/user-latest")
-    return data?.rating ?? null
-  }, 
-  enabled: !!userId
-})
-   
+  const { data: latestUserRating } = useQuery<UserLatestProps>({
+    queryKey: ["latest-user-rating"],
+    queryFn: async () => {
+      const { data } = await api.get("/ratings/user-latest");
+      return data ?? null;
+    },
+  });
 
 
 
+  const { data: books } = useQuery<PopBooks[]>({
+    queryKey: ["popular-books"],
+    queryFn: async () => {
+      const { data } = await api.get("/books/popular");
+
+      return data ?? [];
+    },
+  });
 
   return (
     <main>
       <PageTitle title="Inicio" icon={<ChartLineUp size={32} />} />
       <Content>
         <div>
+          {latestUserRating && <LatestUserRating key={latestUserRating.id} latestUserBook={latestUserRating}/>}
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
           <Section>
-          {latestUserRating && (
-        <div>
-          <header>
-            <h1 >Sua última leitura</h1>
-
-            <Link href={`/perfil/${userId}`} />
-          </header>
-
-          <RatingCard rating={latestUserRating} />
-        </div>
-      )}
-
-           {ratings?.map((rating: RatingUserBook) => {
-            return(
-              <RatingCard key={rating.id} rating={rating}/>
-            )
-           })}
-            
+            {ratings?.map((rating: RatingUserBook) => {
+              return <RatingCard key={rating.id} rating={rating} />;
+            })}
           </Section>
         </div>
 
@@ -84,11 +73,8 @@ const Home: NextPageWithLayout = () => {
 
           <div>
             {books?.map((book: PopBooks) => {
-              return (
-                <CardLivros key={book.id} size="sm" popbook={book}/>
-              )
+              return <CardLivros key={book.id} size="sm" popbook={book} />;
             })}
-        
           </div>
         </ContentRight>
       </Content>

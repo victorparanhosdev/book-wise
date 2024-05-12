@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             book: true,
             user: true
            },
-           take: 10
+           take: 15
         })
 
     return res.json({ratings})
