@@ -9,7 +9,7 @@ import { useToggleShowMore } from "@/src/hooks/useToggleShowMore";
 import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 
 export type RatingUserBook = Rating & {
-  user: User
+  user: User 
   book: Book
 }
 

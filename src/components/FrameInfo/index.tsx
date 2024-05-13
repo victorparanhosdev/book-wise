@@ -5,7 +5,7 @@ import { ReactNode } from "react"
 
 type FrameProps = ComponentProps<typeof Container> & {
     icon?: ReactNode,
-    value: number,
+    value: number | string,
     title: string
 }
 export const FrameInfo = ({icon, value, title, ...props}: FrameProps) => {

@@ -10,14 +10,42 @@ import {Binoculars} from 'phosphor-react'
 import { RatingCard, RatingUserBook } from "@/src/components/RatingCard";
 import { api } from "@/src/lib/axios";
 import { useQuery } from "@tanstack/react-query";
-const Profile: NextPageWithLayout = () => {
+import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 
-  const {data: ratings} = useQuery<RatingUserBook[]>({queryKey: ['perfil-latest'], queryFn: async () => {
-    const {data} = await api.get('/ratings/latest')
-    return data?.ratings ?? []
+type PerfilProps = {
+  user: {
+    avatart_url: string,
+    name: string,
+    member_since: Date
+  },
+  readPages: number,
+  ratedBooks: number,
+  readAuthors: number
+  mostReadCategory: string,
+  ratings: Rating &{
+    book: Book & {
+      categories: CategoriesOnBooks & {
+        category: Category
+      }[]
+    }
+  }[]
+}
+
+const Perfil: NextPageWithLayout = () => {
+
+  const { data: session } = useSession();
+
+  const userId = session?.user.id
+
+  const {data} = useQuery<PerfilProps>({queryKey: ['perfil-latest'], queryFn: async () => {
+
+    const {data} = await api.get(`/books/perfil/${userId}`)
+    return data
   }})
 
-
+ 
 
 
   return (
@@ -27,9 +55,9 @@ const Profile: NextPageWithLayout = () => {
 
         <InputSearch css={{maxWidth: '62.4rem'}} icon={<MagnifyingGlass size={20} />}/>
         <Content>
-        {ratings?.map((rating: RatingUserBook) => {
+        {data?.ratings?.map((rating) => {
           return (
-            <RatingCard rating={rating} key={rating.id}/>
+            <h1 key={rating.book.id}>Card</h1>
           )
         })}
 
@@ -40,26 +68,25 @@ const Profile: NextPageWithLayout = () => {
       <div>
 
  
-      <BoxProfile>
+     {data && <BoxProfile>
         <div>  
-        <Avatar size="lg" alt="Foto" src="https://www.github.com/victorparanhosdev.png"/>
-        <p>Nome</p>
-        <span>Membro Desde 2019</span>
+        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user.avatart_url}/>
+        <p>{data?.user.name}</p>
+        <span>{`Membro desde de ${new Date(data?.user.member_since).getFullYear()}`}</span>
           
         </div>
 
         <Retangulo></Retangulo>
 
         <div>
-          {Array.from({length: 4}).map((_,i)=> {
-            return (
-              <FrameInfo icon={<Binoculars size={32}/>} value={i+i} title={`Exemplo ${i}`} key={i}/>
-            )
-          })}
+        <FrameInfo icon={<Binoculars size={32}/>} value={data?.readPages} title="Páginas lidas" />
+        <FrameInfo icon={<Binoculars size={32}/>} value={data?.ratedBooks} title="Livros Avaliados" />
+        <FrameInfo icon={<Binoculars size={32}/>} value={data?.readAuthors} title="Autores lidos" />
+        <FrameInfo icon={<Binoculars size={32}/>} value={data?.mostReadCategory} title="Categoria mais lida" />
         </div>
       
         
-      </BoxProfile>
+      </BoxProfile>}
 
       </div>
   
@@ -70,8 +97,8 @@ const Profile: NextPageWithLayout = () => {
     );
 };
 
-Profile.getLayout = (page) => {
+Perfil.getLayout = (page) => {
   return <DefaultLayout title="Perfil">{page}</DefaultLayout>;
 };
 
-export default Profile;
+export default Perfil;
