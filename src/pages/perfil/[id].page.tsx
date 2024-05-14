@@ -11,45 +11,58 @@ import { RatingCard, RatingUserBook } from "@/src/components/RatingCard";
 import { api } from "@/src/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
-import { useSession } from "next-auth/react";
+
 import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { PerfilRatingCard } from "@/src/components/PerfilRatingCard";
+
+export type PerfilRatingProps = Rating &{
+    book: Book & {
+      categories: CategoriesOnBooks & {
+        category: Category
+      }[]
+    }
+}
 
 type PerfilProps = {
   user: {
-    avatart_url: string,
+    avatar_url: string,
     name: string,
     member_since: Date
   },
   readPages: number,
   ratedBooks: number,
   readAuthors: number
-  mostReadCategory: string,
-  ratings: Rating &{
-    book: Book & {
-      categories: CategoriesOnBooks & {
-        category: Category
-      }[]
-    }
-  }[]
+  mostReadCategory?: string,
+  ratings: PerfilRatingProps[]
 }
 
 const Perfil: NextPageWithLayout = () => {
 
+  const router = useRouter()
+  const userId = router.query.id as string
+  
   const { data: session } = useSession();
 
-  const userId = session?.user.id
+  const isOwnProfile = session?.user?.id === userId;
 
-  const {data} = useQuery<PerfilProps>({queryKey: ['perfil-latest'], queryFn: async () => {
-
+ 
+  const {data} = useQuery<PerfilProps>({queryKey: ['perfil-latest', userId], queryFn: async () => {
+    
     const {data} = await api.get(`/books/perfil/${userId}`)
-    return data
-  }})
+    return data ?? {}
+  },
+  enabled: !!userId
+})
 
  
 
 
   return (
+
     <Container>
+
       <div>
         <PageTitle title="Perfil" icon={<User size={32} />}/>
 
@@ -57,7 +70,7 @@ const Perfil: NextPageWithLayout = () => {
         <Content>
         {data?.ratings?.map((rating) => {
           return (
-            <h1 key={rating.book.id}>Card</h1>
+            <PerfilRatingCard key={rating.book.id} rating={rating}/>
           )
         })}
 
@@ -67,10 +80,10 @@ const Perfil: NextPageWithLayout = () => {
       </div>
       <div>
 
- 
-     {data && <BoxProfile>
+        {!data?.user ? <h1>Carregando...</h1> :
+    <BoxProfile>
         <div>  
-        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user.avatart_url}/>
+        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user?.avatar_url}/>
         <p>{data?.user.name}</p>
         <span>{`Membro desde de ${new Date(data?.user.member_since).getFullYear()}`}</span>
           
@@ -86,13 +99,13 @@ const Perfil: NextPageWithLayout = () => {
         </div>
       
         
-      </BoxProfile>}
-
+      </BoxProfile>
+}
       </div>
   
-
+  
     </Container>
-
+    
     
     );
 };

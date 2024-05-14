@@ -16,7 +16,7 @@ type BookRatingProps = {
 
 export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
   const[showForm, setShowFrom] = useState<boolean>(false)
-  const {status} = useSession()
+  const {status, data: session} = useSession()
 
 
 
@@ -31,11 +31,13 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   })
 
+  const canRate = bookData.every(x => x.user.id !== session?.user.id)
+
   return (
     <Comments>
       <TitleComents>
         <p>Avaliações</p>
-        <button type="button" onClick={handleAvaliation}>Avaliar</button>
+       {canRate && <button type="button" onClick={handleAvaliation}>Avaliar</button> }
       </TitleComents>
       <List>
         {showForm && <RatingForm bookId={bookId} onCancel={()=> setShowFrom(false)}/>}

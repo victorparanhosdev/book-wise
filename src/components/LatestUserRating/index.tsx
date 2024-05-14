@@ -7,6 +7,7 @@ import { TitleAvaliacao } from "@/src/pages/inicio/styles";
 import { CaretRight } from "phosphor-react";
 import { UserLatestProps } from "@/src/pages/inicio/index.page";
 import { DialogBook } from "../Dialog";
+import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 
 type LatestUserRatingProps = {
   latestUserBook: UserLatestProps
@@ -16,7 +17,7 @@ export const LatestUserRating = ({latestUserBook}: LatestUserRatingProps) => {
   const { data: session } = useSession();
 
   const userId = session?.user?.id;
-
+  const distance = getRelativeTimeString(new Date(latestUserBook.created_at))
   return (
     <Container>
       <Header>
@@ -36,7 +37,7 @@ export const LatestUserRating = ({latestUserBook}: LatestUserRatingProps) => {
 
         <Content>
           <Box>
-            <span>ha 2 dias</span>
+            <span>{distance}</span>
             <RatingStart size={16} valueRating={latestUserBook.rate} />
           </Box>
 

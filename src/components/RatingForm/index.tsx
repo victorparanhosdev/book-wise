@@ -16,7 +16,7 @@ type RatingFromProps ={
   onCancel: () => void;
 };
 
-export const RatingForm = ({ bookId, onCancel, ...props }: RatingFromProps) => {
+export const RatingForm = ({ bookId, onCancel}: RatingFromProps) => {
   const { data } = useSession();
   const [currentRating, setCurrentRating] = useState(0);
   const [description, setDescription] = useState("");

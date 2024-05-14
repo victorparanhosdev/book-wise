@@ -28,7 +28,7 @@ export function SideBar(){
           </ul>
 
           </Menu>
-         {!user ? <Button href="/"> Fazer login <SignIn size={20}/></Button> : <Button href="" onClick={()=> signOut()}><Avatar size="sm" alt={`Perfil de ${user?.name!}`} src={user?.avatar_url!}/>{user?.name.split(' ')[0]}<SignOut color="#F75A68" size={20}/></Button> }               
+         {!user ? <Button href="/"> Fazer login <SignIn size={20}/></Button> : <Button href="/inicio" onClick={()=> signOut()}><Avatar size="sm" alt={`Perfil de ${user?.name!}`} src={user?.avatar_url!}/>{user?.name.split(' ')[0]}<SignOut color="#F75A68" size={20}/></Button> }               
         
         </SideBarContainer>
     )
