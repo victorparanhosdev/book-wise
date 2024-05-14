@@ -45,7 +45,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
   const { data: book } = useQuery<BookDetails>({
-    queryKey: ["expand-explorer"],
+    queryKey: ["expand-explorer", bookId],
     queryFn: async () => {
       const { data } = await api.get(`/books/details/${bookId}`);
 

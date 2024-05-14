@@ -9,7 +9,7 @@ export function SideBar(){
 
     const router = useRouter()
     const {data} = useSession()
-
+    const userId = router.query.id as string
     const user = data?.user
 
     return(
@@ -24,7 +24,7 @@ export function SideBar(){
           <ul>
             <li><NavLinkButton href='/inicio' active={router.asPath === '/inicio'}><ChartLineUp size={24}/>Inicio</NavLinkButton></li>
             <li><NavLinkButton href='/explorer' active={router.asPath === '/explorer'}><Binoculars size={24}/>Explorer</NavLinkButton></li>
-            {user ? <li><NavLinkButton href={`/perfil/${user.id}`} active={router.asPath === `/perfil/${user.id}`}><User size={24}/>Perfil</NavLinkButton></li> : null}
+            {user ? <li><NavLinkButton href={`/perfil/${userId ?? user.id}`} active={router.asPath === `/perfil/${userId ?? user.id}`}><User size={24}/>Perfil</NavLinkButton></li> : null}
           </ul>
 
           </Menu>

@@ -2,20 +2,21 @@ import { DefaultLayout } from "@/src/components/defaultLayout";
 import { PageTitle } from "../../components/pagetittle";
 import { MagnifyingGlass, User } from "phosphor-react";
 import { NextPageWithLayout } from "../_app.page";
-import { Container, BoxProfile, Retangulo, Content } from "./styles";
+import { Container, BoxProfile, Retangulo, Content, ButtonBack } from "./styles";
 import { Avatar } from "@/src/components/Avatar";
 import { InputSearch } from '@/src/components/Input'
 import { FrameInfo } from "@/src/components/FrameInfo";
-import {Binoculars} from 'phosphor-react'
-import { RatingCard, RatingUserBook } from "@/src/components/RatingCard";
+import {Binoculars, CaretLeft} from 'phosphor-react'
+
 import { api } from "@/src/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
 
-import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
+
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { PerfilRatingCard } from "@/src/components/PerfilRatingCard";
+import { useMemo, useState } from "react";
 
 export type PerfilRatingProps = Rating &{
     book: Book & {
@@ -39,13 +40,15 @@ type PerfilProps = {
 }
 
 const Perfil: NextPageWithLayout = () => {
-
+  const [search, setSearch] = useState("")
   const router = useRouter()
   const userId = router.query.id as string
   
   const { data: session } = useSession();
 
   const isOwnProfile = session?.user?.id === userId;
+
+
 
  
   const {data} = useQuery<PerfilProps>({queryKey: ['perfil-latest', userId], queryFn: async () => {
@@ -56,23 +59,38 @@ const Perfil: NextPageWithLayout = () => {
   enabled: !!userId
 })
 
- 
+const filteredRatings = useMemo(() => {
+  return data?.ratings.filter(rating => {
+    return rating.book.name.toLowerCase().includes(search.toLowerCase())
+  })
+}, [data?.ratings, search])
 
+ 
 
   return (
 
     <Container>
-
+  {!data ? <h1>Carregando...</h1> :
+    <>
       <div>
-        <PageTitle title="Perfil" icon={<User size={32} />}/>
+        
+       {!isOwnProfile ? <ButtonBack href="/inicio"><CaretLeft size={20}/> Voltar</ButtonBack>: <PageTitle title="Perfil" icon={<User size={32} />}/>}
 
-        <InputSearch css={{maxWidth: '62.4rem'}} icon={<MagnifyingGlass size={20} />}/>
+        <InputSearch onChange={({target})=> setSearch(target.value)} css={{maxWidth: '62.4rem'}} icon={<MagnifyingGlass size={20} />}/>
         <Content>
-        {data?.ratings?.map((rating) => {
+        {filteredRatings?.map((rating) => {
           return (
             <PerfilRatingCard key={rating.book.id} rating={rating}/>
           )
         })}
+
+      {filteredRatings && filteredRatings.length <= 0 && (
+          <>
+            <h1>
+              {search ? "Nenhum resultado encontrado" : "Nenhuma avaliação encontrada"}
+            </h1>
+          </>
+        )}
 
         </Content>
      
@@ -80,10 +98,10 @@ const Perfil: NextPageWithLayout = () => {
       </div>
       <div>
 
-        {!data?.user ? <h1>Carregando...</h1> :
-    <BoxProfile>
+        
+      <BoxProfile>
         <div>  
-        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user?.avatar_url}/>
+        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user?.avatar_url!}/>
         <p>{data?.user.name}</p>
         <span>{`Membro desde de ${new Date(data?.user.member_since).getFullYear()}`}</span>
           
@@ -95,15 +113,15 @@ const Perfil: NextPageWithLayout = () => {
         <FrameInfo icon={<Binoculars size={32}/>} value={data?.readPages} title="Páginas lidas" />
         <FrameInfo icon={<Binoculars size={32}/>} value={data?.ratedBooks} title="Livros Avaliados" />
         <FrameInfo icon={<Binoculars size={32}/>} value={data?.readAuthors} title="Autores lidos" />
-        <FrameInfo icon={<Binoculars size={32}/>} value={data?.mostReadCategory} title="Categoria mais lida" />
+        {data?.mostReadCategory && <FrameInfo icon={<Binoculars size={32}/>} value={data.mostReadCategory} title="Categoria mais lida" />}
         </div>
       
         
       </BoxProfile>
-}
+
       </div>
   
-  
+      </>}
     </Container>
     
     

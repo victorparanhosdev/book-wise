@@ -1,5 +1,6 @@
 
 import { styled } from "@/styles/stitches.config";
+import Link from "next/link";
 
 export const Container = styled('main', {
     display: 'grid',
@@ -50,4 +51,21 @@ export const Content = styled("div", {
     marginTop:'$24',
     display: 'grid',
     gap: '2.4rem'
+})
+
+export const ButtonBack = styled(Link, {
+    fontSize: '$button_md',
+    fontWeight: '$bold',
+    color: '$gray200',
+    lineHeight: '160%',
+    display: 'inline-flex',
+    alignItems: 'center',
+    marginBottom: '4rem',
+    gap:'$12',
+
+
+    svg: {
+        color: '$gray200'
+    }
+
 })

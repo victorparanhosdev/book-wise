@@ -33,7 +33,7 @@ export const RatingForm = ({ bookId, onCancel}: RatingFromProps) => {
 
     })}, 
     onSuccess: ()=> {
-    queryClient.invalidateQueries({queryKey: ["expand-explorer"]})
+    queryClient.invalidateQueries({queryKey: ["expand-explorer", bookId]})
     queryClient.invalidateQueries({queryKey: ['explorer-books']})
     onCancel()
   }
