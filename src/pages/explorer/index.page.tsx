@@ -5,20 +5,39 @@ import { NextPageWithLayout } from "../_app.page";
 import { InputSearch } from "@/src/components/Input";
 import { MagnifyingGlass } from "phosphor-react";
 import { useState } from "react";
-import { Container, Content, Category, SectionBooks } from "./styles";
+import { Container, Content, CategoryList, SectionBooks } from "./styles";
 import { Tag } from "@/src/components/Tag";
 import { CardLivros } from "@/src/components/cardlivros";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
 import { PopBooks } from "../inicio/index.page";
+import { Category } from "@prisma/client";
+
+
 
 const Explorer: NextPageWithLayout = () => {
   const [search, setSearch] = useState<string>("");
+  const [selectedCategory, setselectedCategory] = useState<string | null>(null)
 
-  const {data: books} = useQuery({queryKey: ['explorer-books'], queryFn: async()=> {
-    const {data} = await api.get('/books/explorer')
-    return data ?? []
+  const {data: books} = useQuery<PopBooks[]>({queryKey: ['explorer-books', selectedCategory], queryFn: async()=> {
+    const {data} = await api.get('/books', {
+      params: {
+        category: selectedCategory
+      }
+    })
+    return data?.books ?? []
   }})
+
+  const { data: categories } = useQuery<Category[]>({queryKey: ["categories"], queryFn: async () => {
+    const { data } = await api.get("/books/categories");
+    return data?.categories ?? []
+  }})
+
+
+  const filteredBooks = books?.filter((book) => {
+    return book.name.toLowerCase().includes(search.toLowerCase()) || book.author.toLowerCase().includes(search.toLowerCase())
+  })
+
 
   return (
     <Container>
@@ -32,14 +51,15 @@ const Explorer: NextPageWithLayout = () => {
       />
 
       <Content>
-        <Category>
-        {Array.from({length: 7}).map((_, index)=> {
-          return <Tag key={index}>{`Menu ${index}`}</Tag>
+        <CategoryList>
+          <Tag onClick={()=>setselectedCategory(null)} active={selectedCategory === null}>Tudo</Tag>
+        {categories?.map((category)=> {
+          return <Tag onClick={()=> setselectedCategory(category.id)} active={selectedCategory === category.id} key={category.id}>{category.name}</Tag>
         })}
-        </Category>
+        </CategoryList>
 
         <SectionBooks>
-          {books?.map((book: PopBooks)=> {
+          {filteredBooks?.map((book: PopBooks)=> {
             return (
               <CardLivros popbook={book} key={book.id}/>
             )

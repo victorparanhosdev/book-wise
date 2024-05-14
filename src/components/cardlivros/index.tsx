@@ -4,6 +4,7 @@ import { RatingStart } from "../RatingStart";
 import { PopBooks } from "@/src/pages/inicio/index.page";
 import { ComponentProps } from "@stitches/react";
 import { DialogBook } from "../Dialog";
+import { ReadBadge } from "../ReadBadge";
 
 
 type PopBookProps = ComponentProps<typeof ImageContainer> & {
@@ -20,6 +21,7 @@ export const CardLivros = ({ size = "md", sizePadding = 'min', popbook }: PopBoo
   return (
     <DialogBook bookId={popbook?.id}>
     <CardContainer>
+      {popbook.alreadyRead && <ReadBadge title="Lido"/>}
       <CardMain sizePadding={sizePadding}>
         <ImageContainer size={size}>
           <Image

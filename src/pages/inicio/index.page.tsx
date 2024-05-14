@@ -14,6 +14,9 @@ import { LatestUserRating } from "@/src/components/LatestUserRating";
 
 export type PopBooks = Book & {
   avgRating: number;
+  alreadyRead: boolean
+  ratings: number
+
 };
 
 export type UserLatestProps = Rating & {

@@ -6,7 +6,8 @@ export const Container = styled('main', {
     
 })
 
-export const Category = styled('div', {
+export const CategoryList = styled('div', {
+    flexWrap: 'wrap',
     display: 'flex',
     gap: '$12',
     marginBottom: '4.8rem'
