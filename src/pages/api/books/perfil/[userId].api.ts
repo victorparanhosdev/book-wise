@@ -9,11 +9,12 @@ export default async function handler(
   ) {
     if(req.method !== "GET") return res.status(405).end()
   
-    const userId = String(req.query.userId)
+    const userId = req.query.userId
+
   
       const profile = await prisma.user.findUnique({
       where: {
-        id: userId
+        id: String(userId)
       },
       include: {
         ratings: {
@@ -46,7 +47,9 @@ export default async function handler(
       return acc
     }, [] as string[])
     const categories = profile?.ratings?.flatMap(rating => rating?.book?.categories?.flatMap(category => category?.category?.name))
+
     const mostReadCategory = categories ? getMostFrequentString(categories) : null
+
     const profileData = {
       user: {
         avatar_url: profile?.avatar_url,

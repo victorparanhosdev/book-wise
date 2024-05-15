@@ -11,7 +11,7 @@ import {Binoculars, CaretLeft} from 'phosphor-react'
 import { api } from "@/src/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Book, CategoriesOnBooks, Category, Rating } from "@prisma/client";
-
+import { Loading } from "@/src/components/Loading";
 
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -35,7 +35,7 @@ type PerfilProps = {
   readPages: number,
   ratedBooks: number,
   readAuthors: number
-  mostReadCategory?: string,
+  mostReadCategory?: string | undefined,
   ratings: PerfilRatingProps[]
 }
 
@@ -51,7 +51,7 @@ const Perfil: NextPageWithLayout = () => {
 
 
  
-  const {data} = useQuery<PerfilProps>({queryKey: ['perfil-latest', userId], queryFn: async () => {
+  const {data: profile} = useQuery<PerfilProps>({queryKey: ['perfil-latest', userId], queryFn: async () => {
     
     const {data} = await api.get(`/books/perfil/${userId}`)
     return data ?? {}
@@ -60,22 +60,20 @@ const Perfil: NextPageWithLayout = () => {
 })
 
 const filteredRatings = useMemo(() => {
-  return data?.ratings.filter(rating => {
+  return profile?.ratings.filter(rating => {
     return rating.book.name.toLowerCase().includes(search.toLowerCase())
   })
-}, [data?.ratings, search])
+}, [profile?.ratings, search])
 
- 
+
 
   return (
 
     <Container>
-  {!data ? <h1>Carregando...</h1> :
-    <>
-      <div>
-        
-       {!isOwnProfile ? <ButtonBack href="/inicio"><CaretLeft size={20}/> Voltar</ButtonBack>: <PageTitle title="Perfil" icon={<User size={32} />}/>}
 
+ 
+      <div>
+       {!isOwnProfile ? <ButtonBack href="/inicio"><CaretLeft size={20}/> Voltar</ButtonBack>: <PageTitle title="Perfil" icon={<User size={32} />}/>}
         <InputSearch onChange={({target})=> setSearch(target.value)} css={{maxWidth: '62.4rem'}} icon={<MagnifyingGlass size={20} />}/>
         <Content>
         {filteredRatings?.map((rating) => {
@@ -84,7 +82,7 @@ const filteredRatings = useMemo(() => {
           )
         })}
 
-      {filteredRatings && filteredRatings.length <= 0 && (
+      {filteredRatings && filteredRatings?.length <= 0 && (
           <>
             <h1>
               {search ? "Nenhum resultado encontrado" : "Nenhuma avaliação encontrada"}
@@ -99,29 +97,29 @@ const filteredRatings = useMemo(() => {
       <div>
 
         
-      <BoxProfile>
+      {!!profile ? <BoxProfile>
         <div>  
-        <Avatar size="lg" alt={`Foto de ${data?.user.name}`} src={data?.user?.avatar_url!}/>
-        <p>{data?.user.name}</p>
-        <span>{`Membro desde de ${new Date(data?.user.member_since).getFullYear()}`}</span>
+        <Avatar size="lg" alt={`Foto de ${profile?.user.name}`} src={profile?.user?.avatar_url!}/>
+        <p>{profile?.user.name}</p>
+        <span>{`Membro desde de ${new Date(profile?.user.member_since).getFullYear()}`}</span>
           
         </div>
 
         <Retangulo></Retangulo>
 
         <div>
-        <FrameInfo icon={<Binoculars size={32}/>} value={data?.readPages} title="Páginas lidas" />
-        <FrameInfo icon={<Binoculars size={32}/>} value={data?.ratedBooks} title="Livros Avaliados" />
-        <FrameInfo icon={<Binoculars size={32}/>} value={data?.readAuthors} title="Autores lidos" />
-        {data?.mostReadCategory && <FrameInfo icon={<Binoculars size={32}/>} value={data.mostReadCategory} title="Categoria mais lida" />}
+        <FrameInfo icon={<Binoculars size={32}/>} value={profile?.readPages} title="Páginas lidas" />
+        <FrameInfo icon={<Binoculars size={32}/>} value={profile?.ratedBooks} title="Livros Avaliados" />
+        <FrameInfo icon={<Binoculars size={32}/>} value={profile?.readAuthors} title="Autores lidos" />
+        {profile?.mostReadCategory && <FrameInfo icon={<Binoculars size={32}/>} value={profile?.mostReadCategory} title="Categoria mais lida" />}
         </div>
       
         
-      </BoxProfile>
+      </BoxProfile>: <Loading/> }
 
       </div>
   
-      </>}
+    
     </Container>
     
     

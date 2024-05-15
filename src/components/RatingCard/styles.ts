@@ -32,6 +32,7 @@ export const Frame = styled('div', {
       height: '100%',
       objectFit: 'cover',
       borderRadius: '$xs',
+      cursor: 'pointer'
   
     }
 

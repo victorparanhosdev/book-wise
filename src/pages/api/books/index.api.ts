@@ -10,7 +10,8 @@ export default async function handler(
 
   if(req.method !== "GET") return res.status(405).end()
 
-	const categoryId = req.query.book as string
+	const categoryId = req.query.category as string
+
 
     const books = await prisma.book.findMany({
         where: {
@@ -25,7 +26,7 @@ export default async function handler(
         }
     })
 
-
+ 
     const booksAvgRating = await prisma.rating.groupBy({
         by: ["book_id"],
         _avg: {

@@ -20,7 +20,7 @@ export const Content = styled('section', {
 export const SectionBooks = styled('section', {
 
     display: "grid",
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(25rem, 1fr))',
     gap: '$20',
     marginBottom: '4.8rem'
 

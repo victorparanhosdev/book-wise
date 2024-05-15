@@ -17,6 +17,7 @@ import { api } from "@/src/lib/axios";
 
 import {BookRatings } from "../BookRatings";
 import { Book, CategoriesOnBooks, Category, Rating, User } from "@prisma/client";
+import { Loading } from "../Loading";
 
 
 
@@ -73,7 +74,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
             </DialogClose>
           </div>
           {!book ? (
-            <h1>Carregando....</h1>
+            <Loading/>
           ) : (
             <>
               <BookContainer>

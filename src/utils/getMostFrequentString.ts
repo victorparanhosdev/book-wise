@@ -1,4 +1,8 @@
 export const getMostFrequentString = (arr: string[]) => {
+
+  if(arr.length === 0) {
+    return null
+  }
     const hashmap = arr.reduce((acc, val) => {
       acc[val] = (acc[val] || 0) + 1;
       return acc;

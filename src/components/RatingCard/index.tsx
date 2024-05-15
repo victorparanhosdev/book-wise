@@ -7,6 +7,7 @@ import emptyuser from '@/src/assets/emptyuser.jpg'
 import Link from "next/link";
 import { useToggleShowMore } from "@/src/hooks/useToggleShowMore";
 import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
+import { DialogBook } from "../Dialog";
 
 export type RatingUserBook = Rating & {
   user: User 
@@ -40,12 +41,12 @@ export function RatingCard({rating}: RatingCardProps) {
 
       <Frame>
         <div>
-        <Link href={`/explorer?book=${rating?.book.id}`}><Image
+        <DialogBook bookId={rating?.book_id}><Image
           height={152}
           width={108}
           src={rating?.book.cover_url}
           alt="CARD"
-        /></Link>
+        /></DialogBook>
 
         </div>
 

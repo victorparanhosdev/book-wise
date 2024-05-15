@@ -6,6 +6,7 @@ import { RatingsProps } from "../Dialog";
 import { useState } from "react";
 import { RatingForm } from "../RatingForm";
 import { useSession } from "next-auth/react";
+import { DialogAvaliation } from "../DialogAvaliation";
 
 
 type BookRatingProps = {
@@ -21,9 +22,7 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
 
 
   const handleAvaliation = () => {
-    if(status === 'unauthenticated'){
-      return alert('Por favor logue')
-    }
+    if(status === 'unauthenticated') return
     setShowFrom(true)
   }
 
@@ -33,11 +32,13 @@ export const BookRatings = ({ bookData, bookId }: BookRatingProps) => {
 
   const canRate = bookData.every(x => x.user.id !== session?.user.id)
 
+  const AvaliationAutentication = status === 'unauthenticated' ? DialogAvaliation : 'div'
+
   return (
     <Comments>
       <TitleComents>
         <p>Avaliações</p>
-       {canRate && <button type="button" onClick={handleAvaliation}>Avaliar</button> }
+       {canRate && <AvaliationAutentication><button type="button" onClick={handleAvaliation}>Avaliar</button></AvaliationAutentication> }
       </TitleComents>
       <List>
         {showForm && <RatingForm bookId={bookId} onCancel={()=> setShowFrom(false)}/>}

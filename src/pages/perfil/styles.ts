@@ -50,7 +50,10 @@ export const Retangulo = styled("div", {
 export const Content = styled("div", {
     marginTop:'$24',
     display: 'grid',
-    gap: '2.4rem'
+    gap: '2.4rem',
+    h1: {
+        fontSize: '$text_lg'
+    }
 })
 
 export const ButtonBack = styled(Link, {
