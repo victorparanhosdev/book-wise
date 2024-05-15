@@ -23,7 +23,7 @@ export function SideBar(){
 
           <ul>
             <li><NavLinkButton href='/inicio' active={router.asPath === '/inicio'}><ChartLineUp size={24}/>Inicio</NavLinkButton></li>
-            <li><NavLinkButton href='/explorer' active={router.asPath === '/explorer'}><Binoculars size={24}/>Explorer</NavLinkButton></li>
+            <li><NavLinkButton href='/explorer' active={router.asPath === '/explorer' || router.asPath === `/explorer?book=${router?.query.book}`}><Binoculars size={24}/>Explorer</NavLinkButton></li>
             {user ? <li><NavLinkButton href={`/perfil/${userId ?? user.id}`} active={router.asPath === `/perfil/${userId ?? user.id}`}><User size={24}/>Perfil</NavLinkButton></li> : null}
           </ul>
 

@@ -35,7 +35,7 @@ export const Header = styled('header', {
 })
 
 export const ContainerBook = styled('div', {
-    cursor: 'pointer',
+ 
     display: 'flex',
     gap: '$24',
     borderRadius: 8,
@@ -79,6 +79,7 @@ export const Content = styled('div', {
 export const BookImagem = styled('div', {
     minWidth: '10.8rem',
     height: '15.2rem',
+    cursor: 'pointer',
 
 
     img: {

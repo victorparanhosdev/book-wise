@@ -1,4 +1,4 @@
-import { styled } from "@/styles/stitches.config";
+import { keyframes, styled } from "@/styles/stitches.config";
 import * as Dialog from "@radix-ui/react-dialog"
 
 export const DialogClose = styled(Dialog.Close, {
@@ -16,29 +16,76 @@ export const DialogClose = styled(Dialog.Close, {
       color: "$gray400",
     },
 })
+const contentShow = keyframes({
+  from: {
+    opacity: 0,
+   
+  },
+  to: {
+    opacity: 1,
+  
+  },
+});
+
+const contentHidden = keyframes({
+  from: {
+    opacity: 1,
+  
+  },
+  to: {
+    opacity: 0,
+  
+  },
+});
 
 export const DialogContent = styled(Dialog.Content, {
-    maxWidth: "66rem",
-    position: "fixed",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    height: "100vh",
-    overflow: "auto",
-    background: "$gray800",
+    width: "min(51.6rem, 100%)",
+    minHeight: "33.7rem",
+    backgroundColor: '$gray700',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     zIndex: "3",
-    paddingInline: "4.8rem",
+    borderRadius: 12,
+
     "> div:nth-child(1)": {
       display: "flex",
       justifyContent: "end",
-      margin: "$24 0 $16",
+      margin: '1.6rem'
+
+   
     },
+
+    '&[data-state="open"]': {
+      animation: `${contentShow} 0.3s`,
+    },
+  
+    '&[data-state="closed"]': {
+      animation: `${contentHidden} 0.1s`,
+    },
+  
+
   
 })
 
 export const DialogOverlay = styled(Dialog.Overlay, {
     position: "fixed",
     inset: 0,
-    background: "rgba(0, 0, 0, 0.2)",
+    background: "rgba(0, 0, 0, 0.5)",
     zIndex: "2",
+})
+
+export const BoxContent = styled('div', {
+      margin: 'auto 7.2rem',
+      h1: {
+        marginBottom: '4rem',
+        color: '$gray200',
+        fontSize: '$heading_xs',
+        lineHeight: '140%',
+        fontWeight: '$bold',
+        textAlign:'center',
+      }
+
+
 })

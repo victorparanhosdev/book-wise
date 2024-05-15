@@ -1,3 +1,4 @@
+
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   DialogClose,
@@ -10,7 +11,7 @@ import {
 import Image from "next/image";
 import { BookOpen, BookmarkSimple, X } from "phosphor-react";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { RatingStart } from "../RatingStart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/src/lib/axios";
@@ -18,6 +19,7 @@ import { api } from "@/src/lib/axios";
 import {BookRatings } from "../BookRatings";
 import { Book, CategoriesOnBooks, Category, Rating, User } from "@prisma/client";
 import { Loading } from "../Loading";
+import { useRouter } from "next/router";
 
 
 
@@ -45,6 +47,10 @@ export type BookDetails = Book & {
 export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
+  const router = useRouter()
+  const paramBookId = router.query.book as string;
+
+
   const { data: book } = useQuery<BookDetails>({
     queryKey: ["expand-explorer", bookId],
     queryFn: async () => {
@@ -60,10 +66,25 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
 
   const ratingsLength = book?.ratings?.length ?? 0   
 
+  const onOpenChange = (open: boolean)=> {
+      if(open) {
+        router.push(`/explorer?book=${bookId}`, undefined, {shallow: true})
+      }else {
+        router.push('explorer', undefined, {shallow: true})
+      }
+
+      setOpen(open)
+  }
+
+  useEffect(() => {
+    if (paramBookId === bookId) {
+      setOpen(true);
+    }
+  }, [bookId, paramBookId])
 
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay />
