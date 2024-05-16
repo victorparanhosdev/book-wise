@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../avatar";
 import { RatingStart } from "../RatingStart";
 import { Container, UserDetails, ContainerButton } from "./styles";
 import { useSession } from "next-auth/react";

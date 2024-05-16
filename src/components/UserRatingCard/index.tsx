@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 import { ItemList} from "./styles";
 import Link from "next/link";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../avatar";
 import { RatingStart } from "../RatingStart";
 import { RatingsProps } from "../Dialog";
 

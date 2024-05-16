@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../avatar";
 import { Container, Header, Frame, ToggleShowMoreButton } from "./styles";
 import { RatingStart } from "../RatingStart";
 import { Book, Rating, User, } from "@prisma/client";

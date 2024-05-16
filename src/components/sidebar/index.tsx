@@ -4,7 +4,7 @@ import BookHeart from '../../assets/mdi_book-heart-outline.svg'
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../avatar";
 export function SideBar(){
 
     const router = useRouter()

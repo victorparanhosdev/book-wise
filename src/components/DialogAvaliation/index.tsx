@@ -20,7 +20,7 @@ export const DialogAvaliation = ({ children }: DialogAvaliationProps) => {
 
   const router = useRouter();
   const paramBookId = router.query.book as string;
-
+  console.log(!!paramBookId)
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -35,7 +35,7 @@ export const DialogAvaliation = ({ children }: DialogAvaliationProps) => {
 
           <BoxContent>
             <h1>Faça login para deixar sua avaliação</h1>
-            <AuthButtons callbackUrl={!!paramBookId ? `/explorer?book=${paramBookId}` : '/explorer'}/>
+            <AuthButtons/>
           </BoxContent>
         </DialogContent>
       </Dialog.Portal>

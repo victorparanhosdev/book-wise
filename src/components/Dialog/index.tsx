@@ -48,7 +48,7 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
   const router = useRouter()
-  const paramBookId = router.query.book as string;
+  //const paramBookId = router.query.book as string;
 
 
   const { data: book } = useQuery<BookDetails>({
@@ -66,11 +66,11 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
 
   const ratingsLength = book?.ratings?.length ?? 0   
 
-  const onOpenChange = (open: boolean)=> {
+  /*const onOpenChange = (open: boolean)=> {
       if(open) {
         router.push(`/explorer?book=${bookId}`, undefined, {shallow: true})
       }else {
-        router.push('explorer', undefined, {shallow: true})
+        router.push('/explorer', undefined, {shallow: true})
       }
 
       setOpen(open)
@@ -82,9 +82,9 @@ export const DialogBook = ({ children, bookId }: DialogProps) => {
     }
   }, [bookId, paramBookId])
 
-
+*/
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay />

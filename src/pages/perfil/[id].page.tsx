@@ -3,7 +3,7 @@ import { PageTitle } from "../../components/pagetittle";
 import { MagnifyingGlass, User } from "phosphor-react";
 import { NextPageWithLayout } from "../_app.page";
 import { Container, BoxProfile, Retangulo, Content, ButtonBack } from "./styles";
-import { Avatar } from "@/src/components/Avatar";
+import { Avatar } from "@/src/components/avatar";
 import { InputSearch } from '@/src/components/Input'
 import { FrameInfo } from "@/src/components/FrameInfo";
 import {Binoculars, CaretLeft} from 'phosphor-react'
