@@ -49,6 +49,13 @@ export const DialogContent = styled(Dialog.Content, {
     zIndex: "4",
     borderRadius: 12,
 
+    '@media (max-width: 430px)': {
+      top: 0,
+      left:0,
+      transform: 'translate(0, 0)',
+      },
+  
+
     "> div:nth-child(1)": {
       display: "flex",
       justifyContent: "end",

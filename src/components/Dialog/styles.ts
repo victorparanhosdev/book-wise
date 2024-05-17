@@ -57,10 +57,20 @@ export const DialogContent = styled(Dialog.Content, {
   background: "$gray800",
   zIndex: "3",
   paddingInline: "4.8rem",
+
+  '@media (max-width: 430px)': {
+    paddingInline: '2rem',
+
+    },
+
   "> div:nth-child(1)": {
     display: "flex",
     justifyContent: "end",
     margin: "$24 0 $16",
+    '@media (max-width: 430px)': {
+      margin: '1rem 0'
+      },
+  
   },
 
   '&[data-state="open"]': {

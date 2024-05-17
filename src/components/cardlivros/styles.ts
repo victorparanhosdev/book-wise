@@ -52,6 +52,8 @@ export const ImageContainer = styled('div', {
         lg: {
           height: "24.2rem",
           minWidth: "17.165rem",
+         
+        
         },
       },
     },
