@@ -46,7 +46,7 @@ export const DialogContent = styled(Dialog.Content, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: "3",
+    zIndex: "4",
     borderRadius: 12,
 
     "> div:nth-child(1)": {
@@ -73,7 +73,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
     position: "fixed",
     inset: 0,
     background: "rgba(0, 0, 0, 0.5)",
-    zIndex: "2",
+    zIndex: "3",
 })
 
 export const BoxContent = styled('div', {
