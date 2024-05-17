@@ -13,10 +13,29 @@ export const SideBarContainer = styled("div", {
   backgroundSize: "cover", // Ajusta o tamanho da imagem para cobrir todo o elemento
   backgroundRepeat: "no-repeat", // Evita que a imagem se repita
   borderRadius: "$md",
+
+  '@media (max-width: 430px)': {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 2,
+    margin: "0",
+    display: 'block'
+ },
+
+
+  
 });
 
 export const Menu = styled("div", {
   margin: "$40 auto 0",
+  '@media (max-width: 430px)': {
+    margin: "2rem",
+    placeSelf: 'self-start'
+
+ },
+
 
   h1: {
     background: "$gradient-horizontal",
@@ -30,6 +49,12 @@ export const Menu = styled("div", {
     fontWeight: "$bold",
     lineHeight: "$base",
     marginBottom: "6.4rem",
+    '@media (max-width: 430px)': {
+      marginBottom: "2rem",
+  
+  
+   },
+    
   },
 
   ul: {
@@ -50,7 +75,11 @@ export const Button = styled(Link, {
   fontSize: "$button_md",
   fontWeight: "$bold",
   lineHeight: "$base",
-  
+
+  '@media (max-width: 430px)': {
+    margin: '0 4rem 2rem'
+
+    },
 
   "&:hover": {
     color: "$green100",

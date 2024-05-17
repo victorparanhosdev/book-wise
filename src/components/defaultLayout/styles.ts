@@ -9,6 +9,11 @@ export const DefaultLayoutContainer = styled('div', {
     gap: '9.6rem',
     background: '$gray800',
     color: '$gray100',
+    '@media (max-width: 430px)': {
+        display: 'block',
+      
+
+     },
  
     
 })
@@ -23,5 +28,12 @@ export const Content = styled('div', {
       
     },
 
+    
+  '@media (max-width: 430px)': {
+    marginTop: 'calc(7.2rem + 24rem)',
+
+    },
+
+ 
   
 })

@@ -4,6 +4,11 @@ import { styled} from "@/styles/stitches.config";
 export const Content = styled("div", {
   display: 'flex',
   gap: "6.4rem",
+  '@media (max-width: 430px)': {
+    display: 'block',
+
+ },
+ 
 });
 
 export const TitleAvaliacao = styled("div", {

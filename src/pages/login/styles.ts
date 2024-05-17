@@ -5,12 +5,25 @@ export const Container = styled('main', {
     margin: '2rem',
     display: 'flex',
 
+    '@media (max-width: 430px)': {
+        flexDirection: 'column',
+        margin: 'auto',
+    },
 
     'section:last-child': {
         height: 'calc(100vh - 4rem)',
         margin: 'auto',
         display: 'grid',
         placeContent: 'center',
+
+        
+    '@media (max-width: 430px)': {
+       placeContent: 'initial',
+       margin: '4rem 1rem',
+ 
+  
+    },
+        
     }
 
 
@@ -26,6 +39,14 @@ export const SectionLogo = styled('section', {
     marginRight: '2rem',
     flex: '1',
     maxWidth: '59.8rem',
+
+    '@media (max-width: 430px)': {
+        marginRight: '0',
+        borderRadius: '0',
+        minHeight: '15rem'
+  
+    },
+    
 
     h1: {
         background: "$gradient-horizontal",
@@ -50,6 +71,13 @@ export const SectionLogo = styled('section', {
 
 export const BoxLogin = styled('div', {
     width: '37.2rem',
+    '@media (max-width: 430px)': {
+        margin: '0 auto',
+        width: '90%'
+  
+   
+     },
+
     h1: {
         color: '$gray100',
         fontSize: '$heading_lg',
