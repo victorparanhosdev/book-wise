@@ -30,8 +30,8 @@ export const Content = styled('div', {
 
     
   '@media (max-width: 430px)': {
-    marginTop: 'calc(7.2rem + 24rem)',
-
+   
+    marginTop: '9rem'
     },
 
  

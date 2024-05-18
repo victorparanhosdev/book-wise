@@ -21,7 +21,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
   position: "fixed",
   inset: 0,
   background: "rgba(0, 0, 0, 0.5)",
-  zIndex: "2",
+  zIndex: 2,
 });
 
 const contentShow = keyframes({
@@ -55,7 +55,7 @@ export const DialogContent = styled(Dialog.Content, {
   height: "100vh",
   overflow: "auto",
   background: "$gray800",
-  zIndex: "3",
+  zIndex: 3,
   paddingInline: "4.8rem",
 
   '@media (max-width: 430px)': {

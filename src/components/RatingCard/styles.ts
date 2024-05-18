@@ -6,7 +6,7 @@ export const Container = styled('div', {
     borderRadius: '$sm',
     display: 'grid',
     gap: '3.2rem',
- 
+    minWidth: '35rem', 
 
     '> div:nth-child(1)': {
       display: 'flex',
@@ -18,12 +18,13 @@ export const Container = styled('div', {
 })
 
 export const Frame = styled('div', {
-  display: 'flex',
+  display: 'grid',
+  gridAutoFlow: 'column',
   gap: '$20',
 
   
   '> div:nth-child(1)': {
-    minWidth: '10.8rem',
+    width: '10.8rem',
     height: '15.2rem',
 
 
@@ -89,7 +90,7 @@ export const ToggleShowMoreButton = styled('button', {
   background: "none",
   cursor: 'pointer',
   border: "none",
-  fontSize: "1.4rem",
+  fontSize: "1.2rem",
   color: "$purple100",
   fontWeight: "$bold",
   marginLeft: "1rem",

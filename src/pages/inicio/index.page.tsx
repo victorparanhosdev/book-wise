@@ -9,7 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { api } from "@/src/lib/axios";
 import { Book, Rating } from "@prisma/client";
-import { useSession } from "next-auth/react";
 import { LatestUserRating } from "@/src/components/LatestUserRating";
 
 export type PopBooks = Book & {

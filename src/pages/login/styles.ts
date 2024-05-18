@@ -42,7 +42,7 @@ export const SectionLogo = styled('section', {
 
     '@media (max-width: 430px)': {
         marginRight: '0',
-        borderRadius: '0',
+        margin: '1rem',
         minHeight: '15rem'
   
     },

@@ -18,7 +18,7 @@ export type RatingCardProps = {
   rating: RatingUserBook
 }
 
-const MAX_LENGTH = 200
+const MAX_LENGTH = 120
 
 
 export function RatingCard({rating}: RatingCardProps) {

@@ -14,15 +14,6 @@ export const SideBarContainer = styled("div", {
   backgroundRepeat: "no-repeat", // Evita que a imagem se repita
   borderRadius: "$md",
 
-  '@media (max-width: 430px)': {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 2,
-    margin: "0",
-    display: 'block'
- },
 
 
   
@@ -30,11 +21,7 @@ export const SideBarContainer = styled("div", {
 
 export const Menu = styled("div", {
   margin: "$40 auto 0",
-  '@media (max-width: 430px)': {
-    margin: "2rem",
-    placeSelf: 'self-start'
-
- },
+  
 
 
   h1: {
@@ -49,11 +36,7 @@ export const Menu = styled("div", {
     fontWeight: "$bold",
     lineHeight: "$base",
     marginBottom: "6.4rem",
-    '@media (max-width: 430px)': {
-      marginBottom: "2rem",
-  
-  
-   },
+   
     
   },
 
@@ -76,10 +59,6 @@ export const Button = styled(Link, {
   fontWeight: "$bold",
   lineHeight: "$base",
 
-  '@media (max-width: 430px)': {
-    margin: '0 4rem 2rem'
-
-    },
 
   "&:hover": {
     color: "$green100",
@@ -133,3 +112,100 @@ export const NavLinkButton = styled(Link, {
     },
   },
 });
+
+
+
+export const MenuMobile = styled('div', {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: 5,
+  
+  paddingInline: '2rem',
+  backgroundImage: `url(${Background.src})`, // Substitua pelo caminho correto da sua imagem
+  backgroundSize: "cover", // Ajusta o tamanho da imagem para cobrir todo o elemento
+  backgroundRepeat: "no-repeat", // Ev
+  '> div:nth-child(1)':{
+    display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '7rem',
+
+  '> div': {
+    display: 'flex',
+    alignItems: "center",
+
+  },
+
+  a: {
+    background: "$gradient-horizontal",
+    "-webkit-background-clip": "text" /* Define a área de clipping */,
+    "-webkit-text-fill-color":
+      "transparent" /* Define a cor do texto como transparente */,
+    display: "flex",
+    alignItems: "center",
+    gap: "$8",
+    fontSize: "$heading_md",
+    fontWeight: "$bold",
+    lineHeight: "$base"
+   
+    
+  },
+
+  svg: {
+    cursor: 'pointer'
+  }
+
+  },
+
+  '> a:last-child': {
+    margin: '2rem',
+  }
+
+
+
+
+})
+
+export const ListMenuMobile = styled('nav', {
+  height: 0,
+  opacity: 0,
+  visibility: 'hidden',
+  transition: 'all 0.4s',
+
+
+  ul: {
+    opacity: 0,
+    listStyle: "none",
+    display: "grid",
+    gap: "$16",
+    transition: 'opacity 0.4s',
+  },
+
+  
+  variants: {
+    isMenu: {
+     true: {
+      height: '9rem',
+      opacity: 1,
+      visibility: 'visible',
+
+       ul: {
+        opacity: 1,
+        marginTop: '1rem'
+       }
+     },
+    
+    }
+   },
+
+
+})
+
+export const AvatarAuth = styled(Link, {
+    all: 'unset',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems:'center',
+})

@@ -7,11 +7,19 @@ export const Container = styled('main', {
     gridTemplateColumns: '1fr 30.8rem',
     gap: '6.4rem',
 
+    '@media (max-width: 430px)': {
+        display: 'block'
+    }
+
 })
 
 export const BoxProfile = styled('div', {
 
     borderLeft: '1px solid $gray700',
+    '@media (max-width: 430px)': {
+        border: 'none',
+        marginTop: '2rem'
+    },
     "> div:nth-child(1)": {
         display: 'flex',
         flexDirection: 'column',
@@ -44,7 +52,9 @@ export const Retangulo = styled("div", {
     height: 4,
     background: '$gradient-horizontal',
     margin: '$32 auto',
-    borderRadius: '$full'
+    borderRadius: '$full',
+
+ 
 })
 
 export const Content = styled("div", {

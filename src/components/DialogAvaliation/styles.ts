@@ -81,6 +81,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
     inset: 0,
     background: "rgba(0, 0, 0, 0.5)",
     zIndex: "3",
+    
 })
 
 export const BoxContent = styled('div', {

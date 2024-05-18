@@ -8,7 +8,7 @@ import {
 import { ReactNode } from "react";
 import { X } from "phosphor-react";
 import { AuthButtons } from "../AuthButtons";
-import { useRouter } from "next/router";
+
 
 type DialogAvaliationProps = {
   children: ReactNode;
@@ -18,9 +18,7 @@ type DialogAvaliationProps = {
 
 export const DialogAvaliation = ({ children }: DialogAvaliationProps) => {
 
-  const router = useRouter();
-  const paramBookId = router.query.book as string;
-  console.log(!!paramBookId)
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
