@@ -42,16 +42,16 @@ export const DialogContent = styled(Dialog.Content, {
     width: "min(51.6rem, 100%)",
     minHeight: "33.7rem",
     backgroundColor: '$gray700',
-    position: 'absolute',
+    position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: "4",
+    zIndex: 5,
     borderRadius: 12,
 
     '@media (max-width: 430px)': {
-      top: 0,
-      left:0,
+      top: 50,
+      left: 0,
       transform: 'translate(0, 0)',
       },
   
@@ -79,13 +79,14 @@ export const DialogContent = styled(Dialog.Content, {
 export const DialogOverlay = styled(Dialog.Overlay, {
     position: "fixed",
     inset: 0,
-    background: "rgba(0, 0, 0, 0.5)",
-    zIndex: "3",
+    background: "rgba(0, 0, 0, 0.6)",
+    zIndex: 3,
     
 })
 
 export const BoxContent = styled('div', {
-      margin: 'auto 7.2rem',
+      margin: '0 7.2rem',
+      paddingBottom: '4rem',
       h1: {
         marginBottom: '4rem',
         color: '$gray200',

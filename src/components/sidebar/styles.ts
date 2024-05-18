@@ -2,6 +2,8 @@ import { styled } from "@/styles/stitches.config";
 import Background from "@/src/assets/Background.png";
 import Link from "next/link";
 
+
+
 export const SideBarContainer = styled("div", {
   marginBlock: "$20",
   position: "relative",
@@ -197,6 +199,18 @@ export const ListMenuMobile = styled('nav', {
        }
      },
     
+    },
+    IsHeight: {
+      true: {
+        height: '15rem',
+        opacity: 1,
+        visibility: 'visible',
+  
+         ul: {
+          opacity: 1,
+          marginTop: '1rem'
+         }
+      }
     }
    },
 

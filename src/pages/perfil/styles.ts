@@ -8,7 +8,8 @@ export const Container = styled('main', {
     gap: '6.4rem',
 
     '@media (max-width: 430px)': {
-        display: 'block'
+        display: 'block',
+
     }
 
 })
@@ -16,10 +17,7 @@ export const Container = styled('main', {
 export const BoxProfile = styled('div', {
 
     borderLeft: '1px solid $gray700',
-    '@media (max-width: 430px)': {
-        border: 'none',
-        marginTop: '2rem'
-    },
+
     "> div:nth-child(1)": {
         display: 'flex',
         flexDirection: 'column',
@@ -44,7 +42,20 @@ export const BoxProfile = styled('div', {
         display: 'grid',
         padding: '2rem 5.6rem',
         gap: '4rem',
-    }
+
+        '@media (max-width: 430px)': {
+            padding: '3rem 1rem',
+            gap: '2rem',
+        },
+        
+    },
+
+    '@media (max-width: 430px)': {
+        border: 'none',
+        margin: '4rem 1rem',
+        display: 'grid',
+        justifyContent: 'center'
+    },
 })
 
 export const Retangulo = styled("div", {
@@ -53,6 +64,10 @@ export const Retangulo = styled("div", {
     background: '$gradient-horizontal',
     margin: '$32 auto',
     borderRadius: '$full',
+
+    '@media (max-width: 430px)': {
+        display: 'none'
+    },
 
  
 })

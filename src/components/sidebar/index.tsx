@@ -5,7 +5,7 @@ import {
   NavLinkButton,
   MenuMobile,
   ListMenuMobile,
-  AvatarAuth
+  AvatarAuth,
 } from "./styles";
 import {
   Binoculars,
@@ -22,7 +22,7 @@ import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar } from "../avatar";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import emptyuser from '@/src/assets/emptyuser.jpg'
+import emptyuser from "@/src/assets/emptyuser.jpg";
 import Link from "next/link";
 import { useState } from "react";
 export function SideBar() {
@@ -106,65 +106,81 @@ export function SideBar() {
                 BookWise
               </Link>
               <div>
-              {status === 'authenticated' ? <><AvatarAuth style={{marginRight: '1.5rem'}} href={`/perfil/${userId ?? user?.id}`} >
-              <Avatar
-                size="sm"
-                alt={`Perfil de ${user?.name! ?? 'anonimo'}`}
-                src={user?.avatar_url ?? emptyuser}
-              />
-              
-              </AvatarAuth><SignOut style={{marginRight: '1.5rem'}} onClick={() => signOut()} color="#F75A68" size={24} /></> : <AvatarAuth style={{marginRight: '1.5rem'}} href="/"><User  size={24} /></AvatarAuth>}
-            
+                {status === "authenticated" ? (
+                  <>
+                    <AvatarAuth
+                      style={{ marginRight: "2rem" }}
+                      href={`/perfil/${userId ?? user?.id}`}
+                    >
+                      <Avatar
+                        size="md"
+                        alt={`Perfil de ${user?.name! ?? "anonimo"}`}
+                        src={user?.avatar_url ?? emptyuser}
+                      />
+                    </AvatarAuth>
+                    <SignOut
+                      style={{ marginRight: "2rem" }}
+                      onClick={() => signOut()}
+                      color="#F75A68"
+                      size={28}
+                    />
+                  </>
+                ) : (
+                  <AvatarAuth style={{ marginRight: "2rem" }} href="/">
+                    <User size={28} />
+                  </AvatarAuth>
+                )}
 
-
-              {!isMenuActive ? (
-                <TextAlignRight onClick={() => setMenuActive(true)} size={32} />
-              ) : (
-                <X onClick={() => setMenuActive(false)} size={32} />
-              )}
+                {!isMenuActive ? (
+                  <TextAlignRight
+                    onClick={() => setMenuActive(true)}
+                    size={32}
+                  />
+                ) : (
+                  <X onClick={() => setMenuActive(false)} size={32} />
+                )}
               </div>
             </div>
-          
- 
-            <ListMenuMobile isMenu={isMenuActive}>
-              <ul>
-               <li>
-                 <NavLinkButton onClick={()=> setMenuActive(false)}
-                   href="/inicio"
-                   active={router.asPath === "/inicio"}
-                 >
-                   <ChartLineUp size={24} />
-                   Inicio
-                 </NavLinkButton>
-               </li>
-               <li>
-                 <NavLinkButton onClick={()=> setMenuActive(false)}
-                   href="/explorer"
-                   active={
-                     router.asPath === "/explorer" ||
-                     router.asPath === `/explorer?book=${router?.query.book}`
-                   }
-                 >
-                   <Binoculars size={24} />
-                   Explorer
-                 </NavLinkButton>
-               </li>
-               {user ? (
-                 <li>
-                   <NavLinkButton onClick={()=> setMenuActive(false)}
-                     href={`/perfil/${userId ?? user.id}`}
-                     active={router.asPath === `/perfil/${userId ?? user.id}`}
-                   >
-                     <User size={24} />
-                     Perfil
-                   </NavLinkButton>
-                 </li>
-               ) : null}
-             </ul>
-            </ListMenuMobile>
-            
 
-     
+            <ListMenuMobile IsHeight={user && isMenuActive} isMenu={!user && isMenuActive}>
+              <ul>
+                <li>
+                  <NavLinkButton
+                    onClick={() => setMenuActive(false)}
+                    href="/inicio"
+                    active={router.asPath === "/inicio"}
+                  >
+                    <ChartLineUp size={24} />
+                    Inicio
+                  </NavLinkButton>
+                </li>
+                <li>
+                  <NavLinkButton
+                    onClick={() => setMenuActive(false)}
+                    href="/explorer"
+                    active={
+                      router.asPath === "/explorer" ||
+                      router.asPath === `/explorer?book=${router?.query.book}`
+                    }
+                  >
+                    <Binoculars size={24} />
+                    Explorer
+                  </NavLinkButton>
+                </li>
+                {user ? (
+                  <li>
+                    <NavLinkButton
+                      onClick={() => setMenuActive(false)}
+                      href={`/perfil/${userId ?? user.id}`}
+                      active={router.asPath === `/perfil/${userId ?? user.id}`}
+                    >
+                      <User size={24} />
+                      Perfil
+                    </NavLinkButton>
+                  </li>
+                ) : null}
+              </ul>
+            </ListMenuMobile>
           </MenuMobile>
         </>
       )}

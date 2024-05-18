@@ -20,6 +20,9 @@ export const TitleAvaliacao = styled("div", {
 
 export const ContentRight = styled("aside", {
   minWidth: '32.4rem',
+  '@media (max-width: 430px)': {
+    margin: '4rem 0'
+},
   "> div:nth-child(1)": {
     display: "flex",
     alignItems: "baseline",

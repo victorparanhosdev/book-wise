@@ -3,6 +3,9 @@ import { styled } from "@/styles/stitches.config";
 export const Container = styled('main', {
     display: "grid",
     gridTemplateAreas: "'title search' 'content content'",
+    '@media (max-width: 430px)': {
+        display: 'block'
+    }
     
 })
 
@@ -14,6 +17,9 @@ export const CategoryList = styled('div', {
 })
 export const Content = styled('section', {
     gridArea: 'content',
+    '@media (max-width: 430px)': {
+        marginTop: '4.8rem'
+    }
 
 })
 

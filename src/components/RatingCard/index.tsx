@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useToggleShowMore } from "@/src/hooks/useToggleShowMore";
 import { getRelativeTimeString } from "@/src/utils/getRelativeTimeString";
 import { DialogBook } from "../Dialog";
+import { useWindowSize } from "@/src/hooks/useWindowSize";
+
 
 export type RatingUserBook = Rating & {
   user: User 
@@ -18,11 +20,12 @@ export type RatingCardProps = {
   rating: RatingUserBook
 }
 
-const MAX_LENGTH = 120
+
 
 
 export function RatingCard({rating}: RatingCardProps) {
-  
+  const {width} = useWindowSize()
+  const MAX_LENGTH = (width && width >= 430) ? 120 : 50
   const {text, isShowMore, toggleShowMore} = useToggleShowMore(rating?.book.summary, MAX_LENGTH)
   const distance = getRelativeTimeString(new Date(rating?.created_at), "pt-BR");
   return (

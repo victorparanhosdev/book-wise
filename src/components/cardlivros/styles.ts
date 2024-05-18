@@ -1,14 +1,15 @@
 import { styled } from "@/styles/stitches.config";
 
-export const CardContainer = styled("button", {
-  all: "unset",
+export const CardContainer = styled("div", {
+
   width: "100%",
-  position: 'relative'
+
  
 });
 
 
 export const CardMain = styled('div', {
+ 
 
     background: "$gray700",
     borderRadius: "$sm",
@@ -82,8 +83,7 @@ export const Content = styled('div', {
     display: "-webkit-box",
     overflow: "hidden",
     width: "100%",
-    position: 'relative',
-    zIndex: 1,
+  
   },
   p: {
     color: "$gray400",

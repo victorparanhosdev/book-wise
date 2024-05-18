@@ -88,6 +88,11 @@ export const BookContainer = styled("div", {
   borderRadius: "10px",
   maxWidth: "56.4rem",
   padding: "2.4rem 3.2rem",
+  '@media (max-width: 430px)': {
+    padding: '2.4rem 2rem'
+    },
+
+  
 
 });
 
@@ -95,16 +100,26 @@ export const ContentOne = styled("div", {
   display: "flex",
   gap: "3.2rem",
   marginBottom: "4rem",
+  '@media (max-width: 430px)': {
+    flexDirection: 'column'
+    },
 
   "div:nth-child(1)": {
-    minWidth: "17.165rem",
+    width: "17.165rem",
     height: "24.2rem",
     borderRadius: "10px",
+    '@media (max-width: 430px)': {
+      width: "100%",
+      height: "auto",
+    },
+  
   },
   "div:nth-child(2)": {
     display: "flex",
     flexDirection: "column",
-
+    '@media (max-width: 430px)': {
+      gap: '0.5rem',
+    },
 
     'span:last-child':{
       color: '$gray400',
@@ -117,6 +132,9 @@ export const ContentOne = styled("div", {
     objectFit: "cover",
     height: "100%",
     width: "100%",
+    '@media (max-width: 430px)': {
+      objectPosition: 'top',
+    },
   },
 
   h1: {
