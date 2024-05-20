@@ -1,7 +1,8 @@
 import { styled } from "@stitches/react";
 
 export const Container = styled('div',{
-    marginTop: 'auto',
+
+    whiteSpace:'nowrap',
     svg: {
         color: '$purple100'
     }

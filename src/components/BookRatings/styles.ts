@@ -3,8 +3,8 @@ import { styled } from "@/styles/stitches.config";
 
 
 export const Comments = styled("div", {
-  marginTop: "4rem",
-  paddingBottom: '2rem'
+  paddingBlock: "4rem",
+
 });
 
 export const TitleComents = styled("div", {
@@ -38,6 +38,6 @@ export const TitleComents = styled("div", {
 export const List = styled("ul", {
   display: "grid",
   gap: "$12",
-  marginBottom: '4rem'
+
 });
 

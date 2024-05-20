@@ -122,7 +122,8 @@ export const ContentOne = styled("div", {
 
     'span:last-child':{
       color: '$gray400',
-      fontSize: '$text_sm'
+      fontSize: '$text_sm',
+
     }
   },
 
@@ -145,7 +146,12 @@ export const ContentOne = styled("div", {
     fontSize: "$text_md",
     color: "$gray300",
     fontWeight: "$regular",
+
   
+  },
+
+  'span:nth-child(2)': {
+    marginBottom:'auto',
   },
 
   p: {
@@ -179,7 +185,8 @@ export const ContentTwo = styled("div", {
   span: {
     color: '$gray200',
     fontSize: '$heading_xs',
-    fontWeight: '$bold'
+    fontWeight: '$bold',
+
   }
 
 
