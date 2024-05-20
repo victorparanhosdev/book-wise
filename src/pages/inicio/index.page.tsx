@@ -55,14 +55,14 @@ const Home: NextPageWithLayout = () => {
     <main>
       <PageTitle title="Inicio" icon={<ChartLineUp size={32} />} />
       <Content>
-        <div>
+        {!ratings ? <Loading /> : <><div>
           {latestUserRating && <LatestUserRating key={latestUserRating.id} latestUserBook={latestUserRating}/>}
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
-          {!ratings ? <Loading /> : <Section>
+          <Section>
             {ratings?.map((rating: RatingUserBook) => {
               return <RatingCard key={rating.id} rating={rating} />;
             })}
-          </Section>}
+          </Section>
         </div>
 
         <ContentRight>
@@ -79,7 +79,7 @@ const Home: NextPageWithLayout = () => {
               return <CardLivros key={book.id} size="sm" popbook={book} />;
             })}
           </div>
-        </ContentRight>
+        </ContentRight></>}
       </Content>
     </main>
   );
