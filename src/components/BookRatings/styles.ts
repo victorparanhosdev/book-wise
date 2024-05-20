@@ -37,6 +37,6 @@ export const TitleComents = styled("div", {
 export const List = styled("ul", {
   display: "grid",
   gap: "$12",
-  marginBottom: '2rem'
+  marginBottom: '4rem'
 });
 

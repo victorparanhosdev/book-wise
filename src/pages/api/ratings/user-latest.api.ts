@@ -15,6 +15,9 @@ export default async function handler(
     buildNextAuthOptions(req, res)
   );
 
+
+
+
   const latestUserRating = await prisma.rating.findFirst({
     where: {
       user_id: String(session?.user?.id),

@@ -22,6 +22,7 @@ export const BoxProfile = styled('div', {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        textAlign: 'center',
 
         p: {
             marginTop: '2rem',
@@ -44,7 +45,7 @@ export const BoxProfile = styled('div', {
         gap: '4rem',
 
         '@media (max-width: 430px)': {
-            padding: '3rem 1rem',
+            padding: '0',
             gap: '2rem',
         },
         
@@ -52,9 +53,10 @@ export const BoxProfile = styled('div', {
 
     '@media (max-width: 430px)': {
         border: 'none',
+        gap: '1.5rem',
         margin: '4rem 1rem',
         display: 'grid',
-        justifyContent: 'center'
+        gridAutoFlow: 'column',
     },
 })
 

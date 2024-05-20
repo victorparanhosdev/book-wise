@@ -46,15 +46,17 @@ export const DialogContent = styled(Dialog.Content, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: 5,
+    zIndex: 3,
     borderRadius: 12,
 
     '@media (max-width: 430px)': {
-      top: 50,
-      left: 0,
-      transform: 'translate(0, 0)',
-      },
   
+      width: '90vw',
+      margin: 'auto'
+  
+      },
+
+    
 
     "> div:nth-child(1)": {
       display: "flex",
@@ -87,6 +89,13 @@ export const DialogOverlay = styled(Dialog.Overlay, {
 export const BoxContent = styled('div', {
       margin: '0 7.2rem',
       paddingBottom: '4rem',
+
+      '@media (max-width: 430px)': {
+        margin: '0 2rem',
+       
+    
+        },
+  
       h1: {
         marginBottom: '4rem',
         color: '$gray200',

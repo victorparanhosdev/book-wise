@@ -20,7 +20,7 @@ export const DialogClose = styled(Dialog.Close, {
 export const DialogOverlay = styled(Dialog.Overlay, {
   position: "fixed",
   inset: 0,
-  background: "rgba(0, 0, 0, 0.5)",
+  background: "rgba(0, 0, 0, 0.6)",
   zIndex: 2,
 });
 
@@ -67,9 +67,7 @@ export const DialogContent = styled(Dialog.Content, {
     display: "flex",
     justifyContent: "end",
     margin: "$24 0 $16",
-    '@media (max-width: 430px)': {
-      margin: '1rem 0'
-      },
+
   
   },
 
@@ -109,8 +107,9 @@ export const ContentOne = styled("div", {
     height: "24.2rem",
     borderRadius: "10px",
     '@media (max-width: 430px)': {
-      width: "100%",
-      height: "auto",
+      width: '100%'
+    
+   
     },
   
   },

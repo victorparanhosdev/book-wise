@@ -16,7 +16,7 @@ export const CardMain = styled('div', {
     display: "grid",
     gridAutoFlow: 'column',
     gap: "2rem",
-  
+    justifyContent: 'left',
     border: "2px solid transparent",
     cursor: "pointer",
 
