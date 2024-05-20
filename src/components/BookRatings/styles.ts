@@ -4,6 +4,7 @@ import { styled } from "@/styles/stitches.config";
 
 export const Comments = styled("div", {
   marginTop: "4rem",
+  paddingBottom: '2rem'
 });
 
 export const TitleComents = styled("div", {
