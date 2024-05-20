@@ -13,7 +13,8 @@ export const CardMain = styled('div', {
 
     background: "$gray700",
     borderRadius: "$sm",
-    display: "flex",
+    display: "grid",
+    gridAutoFlow: 'column',
     gap: "2rem",
   
     border: "2px solid transparent",
@@ -43,16 +44,16 @@ export const ImageContainer = styled('div', {
     variants: {
       size: {
         sm: {
-          minWidth: "6.4rem",
+          width: "6.4rem",
           height: "9.4rem",
         },
         md: {
           height: "15.2rem",
-          minWidth: "10.8rem",
+          width: "10.8rem",
         },
         lg: {
           height: "24.2rem",
-          minWidth: "17.165rem",
+          width: "17.165rem",
          
         
         },

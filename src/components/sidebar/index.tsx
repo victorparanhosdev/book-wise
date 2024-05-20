@@ -113,7 +113,7 @@ export function SideBar() {
                       href={`/perfil/${userId ?? user?.id}`}
                     >
                       <Avatar
-                        size="md"
+                        size="sm"
                         alt={`Perfil de ${user?.name! ?? "anonimo"}`}
                         src={user?.avatar_url ?? emptyuser}
                       />
@@ -122,12 +122,12 @@ export function SideBar() {
                       style={{ marginRight: "2rem" }}
                       onClick={() => signOut()}
                       color="#F75A68"
-                      size={28}
+                      size={24}
                     />
                   </>
                 ) : (
                   <AvatarAuth style={{ marginRight: "2rem" }} href="/">
-                    <User size={28} />
+                    <User size={24} />
                   </AvatarAuth>
                 )}
 
