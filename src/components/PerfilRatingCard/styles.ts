@@ -21,12 +21,13 @@ export const Card = styled('div', {
 })
 
 export const BookContent = styled('div', {
-    display: 'flex',
+    display: 'grid',
+    gridAutoFlow: 'column',
     gap: "$24"
 })
 
 export const BoxImage = styled('div', {
-    minWidth: '9.8rem',
+    width: '9.8rem',
     height: '13.4rem',
 
     img: {
