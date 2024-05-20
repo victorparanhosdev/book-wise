@@ -60,7 +60,8 @@ export const Box = styled('div', {
 export const Content = styled('div', {
     h1: {
         fontSize: '$heading_xs',
-        color: '$gray100'
+        color: '$gray100',
+        marginBottom: '1rem',
       },
       span: {
         fontSize: '$text_sm',
