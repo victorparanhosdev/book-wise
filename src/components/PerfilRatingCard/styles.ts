@@ -23,6 +23,7 @@ export const Card = styled('div', {
 export const BookContent = styled('div', {
     display: 'grid',
     gridAutoFlow: 'column',
+    justifyContent: 'left',
     gap: "$24"
 })
 
