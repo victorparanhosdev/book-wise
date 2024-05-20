@@ -176,7 +176,8 @@ export const ContentTwo = styled("div", {
 
   svg: {
     color: '$green100',
-    marginRight: '1.6rem'
+    marginRight: '1.6rem',
+    width: '2.4rem',
   },
 
   p: {
