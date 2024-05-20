@@ -8,24 +8,6 @@
   Book Wise
 </h1>
 
-<p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/pabloxt14/book-wise">
-
-  <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/pabloxt14/book-wise" />
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/pabloxt14/book-wise">
-  
-  <a href="https://github.com/pabloxt14/book-wise/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pabloxt14/book-wise">
-  </a>
-    
-   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
-
-   <a href="https://github.com/pabloxt14/book-wise/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/pabloxt14/book-wise?style=social">
-  </a>
-</p>
-
 <p>
   <img src="./src//assets/bookwise.jpg" alt="" />
 </p>
