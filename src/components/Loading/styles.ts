@@ -5,5 +5,5 @@ export const Container = styled('div', {
 
     display: 'flex',
     width: '100vw',
-    justifyContent: 'center'
+
 })

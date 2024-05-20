@@ -10,6 +10,7 @@ import Link from "next/link";
 import { api } from "@/src/lib/axios";
 import { Book, Rating } from "@prisma/client";
 import { LatestUserRating } from "@/src/components/LatestUserRating";
+import { Loading } from "@/src/components/Loading";
 
 export type PopBooks = Book & {
   avgRating: number;
@@ -57,11 +58,11 @@ const Home: NextPageWithLayout = () => {
         <div>
           {latestUserRating && <LatestUserRating key={latestUserRating.id} latestUserBook={latestUserRating}/>}
           <TitleAvaliacao>Avaliações mais recentes</TitleAvaliacao>
-          <Section>
+          {!ratings ? <Loading /> : <Section>
             {ratings?.map((rating: RatingUserBook) => {
               return <RatingCard key={rating.id} rating={rating} />;
             })}
-          </Section>
+          </Section>}
         </div>
 
         <ContentRight>
