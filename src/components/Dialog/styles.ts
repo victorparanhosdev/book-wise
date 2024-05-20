@@ -162,7 +162,9 @@ export const ContentOne = styled("div", {
 export const ContentTwo = styled("div", {
   paddingBlock: "2.4rem",
   borderTop: "1px solid $gray600",
-  display: "flex",
+  display: "grid",
+  gridAutoFlow: 'column',
+  justifyContent: 'left',
   gap: "5.6rem",
 
   "> div": {
